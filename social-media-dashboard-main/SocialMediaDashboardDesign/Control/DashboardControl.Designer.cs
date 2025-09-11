@@ -84,9 +84,10 @@
             this.panel4.Controls.Add(this.sataPanel5);
             this.panel4.Controls.Add(this.sataPanel7);
             this.panel4.Controls.Add(this.sataPanel1);
-            this.panel4.Location = new System.Drawing.Point(8, 8);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(804, 750);
+            this.panel4.Size = new System.Drawing.Size(819, 660);
             this.panel4.TabIndex = 5;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
@@ -255,9 +256,9 @@
             this.sataPanel5.Controls.Add(this.label15);
             this.sataPanel5.Controls.Add(this.pictureBox6);
             this.sataPanel5.Controls.Add(this.label16);
-            this.sataPanel5.Location = new System.Drawing.Point(28, 149);
+            this.sataPanel5.Location = new System.Drawing.Point(28, 124);
             this.sataPanel5.Name = "sataPanel5";
-            this.sataPanel5.Size = new System.Drawing.Size(787, 340);
+            this.sataPanel5.Size = new System.Drawing.Size(777, 318);
             this.sataPanel5.TabIndex = 0;
             // 
             // sataBarChart1
@@ -301,7 +302,7 @@
             this.sataBarChart1.MaxValue = 75F;
             this.sataBarChart1.Name = "sataBarChart1";
             this.sataBarChart1.RoundedBars = true;
-            this.sataBarChart1.Size = new System.Drawing.Size(744, 276);
+            this.sataBarChart1.Size = new System.Drawing.Size(736, 262);
             this.sataBarChart1.TabIndex = 2;
             this.sataBarChart1.UsePercent = false;
             // 
@@ -350,9 +351,9 @@
             this.sataPanel7.Controls.Add(this.sataLineChart1);
             this.sataPanel7.Controls.Add(this.label28);
             this.sataPanel7.Controls.Add(this.pictureBox17);
-            this.sataPanel7.Location = new System.Drawing.Point(28, 512);
+            this.sataPanel7.Location = new System.Drawing.Point(28, 448);
             this.sataPanel7.Name = "sataPanel7";
-            this.sataPanel7.Size = new System.Drawing.Size(504, 230);
+            this.sataPanel7.Size = new System.Drawing.Size(504, 198);
             this.sataPanel7.TabIndex = 0;
             // 
             // sataLineChart1
@@ -373,13 +374,13 @@
             this.sataLineChart1.DayColor = System.Drawing.Color.DarkGray;
             this.sataLineChart1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.sataLineChart1.GradientBackground = true;
-            this.sataLineChart1.Location = new System.Drawing.Point(19, 41);
+            this.sataLineChart1.Location = new System.Drawing.Point(13, 32);
             this.sataLineChart1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sataLineChart1.MaxValue = 150F;
             this.sataLineChart1.Name = "sataLineChart1";
             this.sataLineChart1.PointColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(79)))), ((int)(((byte)(165)))));
             this.sataLineChart1.ShortDates = true;
-            this.sataLineChart1.Size = new System.Drawing.Size(473, 182);
+            this.sataLineChart1.Size = new System.Drawing.Size(473, 166);
             this.sataLineChart1.TabIndex = 2;
             this.sataLineChart1.UseBezier = true;
             this.sataLineChart1.UsePercent = false;
@@ -389,7 +390,7 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label28.Location = new System.Drawing.Point(15, 13);
+            this.label28.Location = new System.Drawing.Point(11, 11);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(102, 23);
             this.label28.TabIndex = 1;
@@ -461,7 +462,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel4);
             this.Name = "DashboardControl";
-            this.Size = new System.Drawing.Size(1100, 761);
+            this.Size = new System.Drawing.Size(819, 660);
             this.panel4.ResumeLayout(false);
             this.sataPanel4.ResumeLayout(false);
             this.sataPanel4.PerformLayout();

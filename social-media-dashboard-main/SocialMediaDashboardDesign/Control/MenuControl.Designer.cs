@@ -18,10 +18,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            SATAUiFramework.BorderRadius borderRadius1 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius2 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius4 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius3 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius5 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius6 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius7 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius8 = new SATAUiFramework.BorderRadius();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.headerPanel = new SATAUiFramework.SATAPanel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -31,6 +31,15 @@
             this.categoryPanel = new SATAUiFramework.SATAPanel();
             this.lblCategoryTitle = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.actionPanel = new SATAUiFramework.SATAPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.btnAddItem = new FrameworkTest.SATAButton();
+            this.btnEditItem = new FrameworkTest.SATAButton();
+            this.btnDeleteItem = new FrameworkTest.SATAButton();
+            this.btnToggleAvailability = new FrameworkTest.SATAButton();
             this.menuItemsPanel = new SATAUiFramework.SATAPanel();
             this.lblMenuItemsTitle = new System.Windows.Forms.Label();
             this.menuItemsListView = new System.Windows.Forms.ListView();
@@ -38,17 +47,19 @@
             this.columnCategory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnAvailability = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.actionPanel = new SATAUiFramework.SATAPanel();
-            this.btnAddItem = new FrameworkTest.SATAButton();
-            this.btnEditItem = new FrameworkTest.SATAButton();
-            this.btnDeleteItem = new FrameworkTest.SATAButton();
-            this.btnToggleAvailability = new FrameworkTest.SATAButton();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.kryptonContextMenu1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenu();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtAvailability = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.categoryPanel.SuspendLayout();
-            this.menuItemsPanel.SuspendLayout();
             this.actionPanel.SuspendLayout();
+            this.menuItemsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -62,19 +73,20 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Padding = new System.Windows.Forms.Padding(20);
-            this.mainPanel.Size = new System.Drawing.Size(1200, 800);
+            this.mainPanel.Size = new System.Drawing.Size(1133, 660);
             this.mainPanel.TabIndex = 0;
+            this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
             // headerPanel
             // 
             this.headerPanel.BackColor = System.Drawing.Color.White;
             this.headerPanel.BackColor2 = System.Drawing.Color.White;
             this.headerPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius1.BottomLeft = 15;
-            borderRadius1.BottomRight = 15;
-            borderRadius1.TopLeft = 15;
-            borderRadius1.TopRight = 15;
-            this.headerPanel.BorderRadius = borderRadius1;
+            borderRadius5.BottomLeft = 15;
+            borderRadius5.BottomRight = 15;
+            borderRadius5.TopLeft = 15;
+            borderRadius5.TopRight = 15;
+            this.headerPanel.BorderRadius = borderRadius5;
             this.headerPanel.BorderThickness = 1;
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.btnRefresh);
@@ -82,8 +94,9 @@
             this.headerPanel.Controls.Add(this.btnSearch);
             this.headerPanel.Location = new System.Drawing.Point(20, 20);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1160, 70);
+            this.headerPanel.Size = new System.Drawing.Size(1083, 70);
             this.headerPanel.TabIndex = 0;
+            this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
             // lblTitle
             // 
@@ -117,7 +130,7 @@
             this.btnRefresh.ImageTint = System.Drawing.Color.White;
             this.btnRefresh.IsToggleButton = false;
             this.btnRefresh.IsToggled = false;
-            this.btnRefresh.Location = new System.Drawing.Point(1020, 20);
+            this.btnRefresh.Location = new System.Drawing.Point(951, 22);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -138,7 +151,7 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.txtSearch.Location = new System.Drawing.Point(650, 25);
+            this.txtSearch.Location = new System.Drawing.Point(581, 27);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(250, 28);
             this.txtSearch.TabIndex = 2;
@@ -168,7 +181,7 @@
             this.btnSearch.ImageTint = System.Drawing.Color.White;
             this.btnSearch.IsToggleButton = false;
             this.btnSearch.IsToggled = false;
-            this.btnSearch.Location = new System.Drawing.Point(910, 20);
+            this.btnSearch.Location = new System.Drawing.Point(841, 22);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -191,17 +204,17 @@
             this.categoryPanel.BackColor = System.Drawing.Color.White;
             this.categoryPanel.BackColor2 = System.Drawing.Color.White;
             this.categoryPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius2.BottomLeft = 15;
-            borderRadius2.BottomRight = 15;
-            borderRadius2.TopLeft = 15;
-            borderRadius2.TopRight = 15;
-            this.categoryPanel.BorderRadius = borderRadius2;
+            borderRadius6.BottomLeft = 15;
+            borderRadius6.BottomRight = 15;
+            borderRadius6.TopLeft = 15;
+            borderRadius6.TopRight = 15;
+            this.categoryPanel.BorderRadius = borderRadius6;
             this.categoryPanel.BorderThickness = 1;
             this.categoryPanel.Controls.Add(this.lblCategoryTitle);
             this.categoryPanel.Controls.Add(this.categoryComboBox);
-            this.categoryPanel.Location = new System.Drawing.Point(889, 97);
+            this.categoryPanel.Location = new System.Drawing.Point(865, 97);
             this.categoryPanel.Name = "categoryPanel";
-            this.categoryPanel.Size = new System.Drawing.Size(280, 100);
+            this.categoryPanel.Size = new System.Drawing.Size(238, 104);
             this.categoryPanel.TabIndex = 1;
             // 
             // lblCategoryTitle
@@ -228,97 +241,72 @@
             "Beverages"});
             this.categoryComboBox.Location = new System.Drawing.Point(20, 50);
             this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(240, 29);
+            this.categoryComboBox.Size = new System.Drawing.Size(203, 29);
             this.categoryComboBox.TabIndex = 1;
             this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
-            // 
-            // menuItemsPanel
-            // 
-            this.menuItemsPanel.BackColor = System.Drawing.Color.White;
-            this.menuItemsPanel.BackColor2 = System.Drawing.Color.White;
-            this.menuItemsPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius4.BottomLeft = 15;
-            borderRadius4.BottomRight = 15;
-            borderRadius4.TopLeft = 15;
-            borderRadius4.TopRight = 15;
-            this.menuItemsPanel.BorderRadius = borderRadius4;
-            this.menuItemsPanel.BorderThickness = 1;
-            this.menuItemsPanel.Controls.Add(this.lblMenuItemsTitle);
-            this.menuItemsPanel.Controls.Add(this.menuItemsListView);
-            this.menuItemsPanel.Location = new System.Drawing.Point(23, 97);
-            this.menuItemsPanel.Name = "menuItemsPanel";
-            this.menuItemsPanel.Size = new System.Drawing.Size(860, 680);
-            this.menuItemsPanel.TabIndex = 2;
-            // 
-            // lblMenuItemsTitle
-            // 
-            this.lblMenuItemsTitle.AutoSize = true;
-            this.lblMenuItemsTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.lblMenuItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
-            this.lblMenuItemsTitle.Location = new System.Drawing.Point(20, 15);
-            this.lblMenuItemsTitle.Name = "lblMenuItemsTitle";
-            this.lblMenuItemsTitle.Size = new System.Drawing.Size(124, 23);
-            this.lblMenuItemsTitle.TabIndex = 0;
-            this.lblMenuItemsTitle.Text = "Menu Items";
-            // 
-            // menuItemsListView
-            // 
-            this.menuItemsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnItemName,
-            this.columnCategory,
-            this.columnPrice,
-            this.columnAvailability});
-            this.menuItemsListView.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.menuItemsListView.FullRowSelect = true;
-            this.menuItemsListView.GridLines = true;
-            this.menuItemsListView.HideSelection = false;
-            this.menuItemsListView.Location = new System.Drawing.Point(20, 50);
-            this.menuItemsListView.Name = "menuItemsListView";
-            this.menuItemsListView.Size = new System.Drawing.Size(820, 610);
-            this.menuItemsListView.TabIndex = 1;
-            this.menuItemsListView.UseCompatibleStateImageBehavior = false;
-            this.menuItemsListView.View = System.Windows.Forms.View.Details;
-            this.menuItemsListView.SelectedIndexChanged += new System.EventHandler(this.menuItemsListView_SelectedIndexChanged);
-            // 
-            // columnItemName
-            // 
-            this.columnItemName.Text = "Item Name";
-            this.columnItemName.Width = 300;
-            // 
-            // columnCategory
-            // 
-            this.columnCategory.Text = "Category";
-            this.columnCategory.Width = 200;
-            // 
-            // columnPrice
-            // 
-            this.columnPrice.Text = "Price";
-            this.columnPrice.Width = 150;
-            // 
-            // columnAvailability
-            // 
-            this.columnAvailability.Text = "Availability";
-            this.columnAvailability.Width = 150;
             // 
             // actionPanel
             // 
             this.actionPanel.BackColor = System.Drawing.Color.White;
             this.actionPanel.BackColor2 = System.Drawing.Color.White;
             this.actionPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius3.BottomLeft = 15;
-            borderRadius3.BottomRight = 15;
-            borderRadius3.TopLeft = 15;
-            borderRadius3.TopRight = 15;
-            this.actionPanel.BorderRadius = borderRadius3;
+            borderRadius7.BottomLeft = 15;
+            borderRadius7.BottomRight = 15;
+            borderRadius7.TopLeft = 15;
+            borderRadius7.TopRight = 15;
+            this.actionPanel.BorderRadius = borderRadius7;
             this.actionPanel.BorderThickness = 1;
+            this.actionPanel.Controls.Add(this.comboBox1);
+            this.actionPanel.Controls.Add(this.label4);
+            this.actionPanel.Controls.Add(this.label3);
+            this.actionPanel.Controls.Add(this.txtAvailability);
+            this.actionPanel.Controls.Add(this.label2);
+            this.actionPanel.Controls.Add(this.txtPrice);
+            this.actionPanel.Controls.Add(this.label1);
+            this.actionPanel.Controls.Add(this.txtName);
+            this.actionPanel.Controls.Add(this.pictureBox1);
             this.actionPanel.Controls.Add(this.btnAddItem);
             this.actionPanel.Controls.Add(this.btnEditItem);
             this.actionPanel.Controls.Add(this.btnDeleteItem);
             this.actionPanel.Controls.Add(this.btnToggleAvailability);
-            this.actionPanel.Location = new System.Drawing.Point(889, 207);
+            this.actionPanel.Location = new System.Drawing.Point(868, 207);
             this.actionPanel.Name = "actionPanel";
-            this.actionPanel.Size = new System.Drawing.Size(280, 570);
+            this.actionPanel.Size = new System.Drawing.Size(238, 450);
             this.actionPanel.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(105, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 16);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "price";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(105, 116);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(117, 22);
+            this.txtPrice.TabIndex = 8;
+            this.txtPrice.Text = "ass";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(105, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 16);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "name";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(105, 32);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(117, 22);
+            this.txtName.TabIndex = 6;
+            this.txtName.Text = "ass";
             // 
             // btnAddItem
             // 
@@ -341,7 +329,7 @@
             this.btnAddItem.ImageTint = System.Drawing.Color.White;
             this.btnAddItem.IsToggleButton = false;
             this.btnAddItem.IsToggled = false;
-            this.btnAddItem.Location = new System.Drawing.Point(20, 20);
+            this.btnAddItem.Location = new System.Drawing.Point(7, 248);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
@@ -353,7 +341,7 @@
             this.btnAddItem.PressedImageTint = System.Drawing.Color.White;
             this.btnAddItem.PressedOutline = System.Drawing.Color.Transparent;
             this.btnAddItem.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnAddItem.Size = new System.Drawing.Size(240, 40);
+            this.btnAddItem.Size = new System.Drawing.Size(228, 40);
             this.btnAddItem.TabIndex = 0;
             this.btnAddItem.TextAutoCenter = true;
             this.btnAddItem.TextOffset = new System.Drawing.Point(0, 0);
@@ -380,7 +368,7 @@
             this.btnEditItem.ImageTint = System.Drawing.Color.White;
             this.btnEditItem.IsToggleButton = false;
             this.btnEditItem.IsToggled = false;
-            this.btnEditItem.Location = new System.Drawing.Point(20, 70);
+            this.btnEditItem.Location = new System.Drawing.Point(7, 298);
             this.btnEditItem.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnEditItem.Name = "btnEditItem";
             this.btnEditItem.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -392,7 +380,7 @@
             this.btnEditItem.PressedImageTint = System.Drawing.Color.White;
             this.btnEditItem.PressedOutline = System.Drawing.Color.Transparent;
             this.btnEditItem.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnEditItem.Size = new System.Drawing.Size(240, 40);
+            this.btnEditItem.Size = new System.Drawing.Size(228, 40);
             this.btnEditItem.TabIndex = 1;
             this.btnEditItem.TextAutoCenter = true;
             this.btnEditItem.TextOffset = new System.Drawing.Point(0, 0);
@@ -419,7 +407,7 @@
             this.btnDeleteItem.ImageTint = System.Drawing.Color.White;
             this.btnDeleteItem.IsToggleButton = false;
             this.btnDeleteItem.IsToggled = false;
-            this.btnDeleteItem.Location = new System.Drawing.Point(20, 120);
+            this.btnDeleteItem.Location = new System.Drawing.Point(7, 348);
             this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
@@ -431,7 +419,7 @@
             this.btnDeleteItem.PressedImageTint = System.Drawing.Color.White;
             this.btnDeleteItem.PressedOutline = System.Drawing.Color.Transparent;
             this.btnDeleteItem.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnDeleteItem.Size = new System.Drawing.Size(240, 40);
+            this.btnDeleteItem.Size = new System.Drawing.Size(228, 40);
             this.btnDeleteItem.TabIndex = 2;
             this.btnDeleteItem.TextAutoCenter = true;
             this.btnDeleteItem.TextOffset = new System.Drawing.Point(0, 0);
@@ -458,7 +446,7 @@
             this.btnToggleAvailability.ImageTint = System.Drawing.Color.White;
             this.btnToggleAvailability.IsToggleButton = false;
             this.btnToggleAvailability.IsToggled = false;
-            this.btnToggleAvailability.Location = new System.Drawing.Point(20, 170);
+            this.btnToggleAvailability.Location = new System.Drawing.Point(7, 398);
             this.btnToggleAvailability.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnToggleAvailability.Name = "btnToggleAvailability";
             this.btnToggleAvailability.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
@@ -470,16 +458,137 @@
             this.btnToggleAvailability.PressedImageTint = System.Drawing.Color.White;
             this.btnToggleAvailability.PressedOutline = System.Drawing.Color.Transparent;
             this.btnToggleAvailability.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnToggleAvailability.Size = new System.Drawing.Size(240, 40);
+            this.btnToggleAvailability.Size = new System.Drawing.Size(228, 40);
             this.btnToggleAvailability.TabIndex = 3;
             this.btnToggleAvailability.TextAutoCenter = true;
             this.btnToggleAvailability.TextOffset = new System.Drawing.Point(0, 0);
             this.btnToggleAvailability.Click += new System.EventHandler(this.btnToggleAvailability_Click);
             // 
+            // menuItemsPanel
+            // 
+            this.menuItemsPanel.BackColor = System.Drawing.Color.White;
+            this.menuItemsPanel.BackColor2 = System.Drawing.Color.White;
+            this.menuItemsPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
+            borderRadius8.BottomLeft = 15;
+            borderRadius8.BottomRight = 15;
+            borderRadius8.TopLeft = 15;
+            borderRadius8.TopRight = 15;
+            this.menuItemsPanel.BorderRadius = borderRadius8;
+            this.menuItemsPanel.BorderThickness = 1;
+            this.menuItemsPanel.Controls.Add(this.lblMenuItemsTitle);
+            this.menuItemsPanel.Controls.Add(this.menuItemsListView);
+            this.menuItemsPanel.Location = new System.Drawing.Point(23, 97);
+            this.menuItemsPanel.Name = "menuItemsPanel";
+            this.menuItemsPanel.Size = new System.Drawing.Size(836, 560);
+            this.menuItemsPanel.TabIndex = 2;
+            // 
+            // lblMenuItemsTitle
+            // 
+            this.lblMenuItemsTitle.AutoSize = true;
+            this.lblMenuItemsTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lblMenuItemsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.lblMenuItemsTitle.Location = new System.Drawing.Point(20, 15);
+            this.lblMenuItemsTitle.Name = "lblMenuItemsTitle";
+            this.lblMenuItemsTitle.Size = new System.Drawing.Size(124, 23);
+            this.lblMenuItemsTitle.TabIndex = 0;
+            this.lblMenuItemsTitle.Text = "Menu Items";
+            // 
+            // menuItemsListView
+            // 
+            this.menuItemsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnItemName,
+            this.columnCategory,
+            this.columnPrice,
+            this.columnAvailability});
+            this.menuItemsListView.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.menuItemsListView.FullRowSelect = true;
+            this.menuItemsListView.GridLines = true;
+            this.menuItemsListView.HideSelection = false;
+            this.menuItemsListView.Location = new System.Drawing.Point(20, 50);
+            this.menuItemsListView.Name = "menuItemsListView";
+            this.menuItemsListView.Size = new System.Drawing.Size(808, 499);
+            this.menuItemsListView.TabIndex = 1;
+            this.menuItemsListView.UseCompatibleStateImageBehavior = false;
+            this.menuItemsListView.View = System.Windows.Forms.View.Details;
+            this.menuItemsListView.SelectedIndexChanged += new System.EventHandler(this.menuItemsListView_SelectedIndexChanged);
+            // 
+            // columnItemName
+            // 
+            this.columnItemName.Text = "Item Name";
+            this.columnItemName.Width = 300;
+            // 
+            // columnCategory
+            // 
+            this.columnCategory.Text = "Category";
+            this.columnCategory.Width = 200;
+            // 
+            // columnPrice
+            // 
+            this.columnPrice.Text = "Price";
+            this.columnPrice.Width = 150;
+            // 
+            // columnAvailability
+            // 
+            this.columnAvailability.Text = "Availability";
+            this.columnAvailability.Width = 150;
+            // 
             // updateTimer
             // 
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "All",
+            "Appetizers",
+            "Main Courses",
+            "Desserts",
+            "Beverages"});
+            this.comboBox1.Location = new System.Drawing.Point(100, 75);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(120, 29);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(105, 141);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 16);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "availability";
+            // 
+            // txtAvailability
+            // 
+            this.txtAvailability.Location = new System.Drawing.Point(105, 155);
+            this.txtAvailability.Name = "txtAvailability";
+            this.txtAvailability.Size = new System.Drawing.Size(117, 22);
+            this.txtAvailability.TabIndex = 10;
+            this.txtAvailability.Text = "ass";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(105, 57);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 16);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "category";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SocialMediaDashboardDesign.Properties.Resources.holderpic;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(92, 147);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // MenuControl
             // 
@@ -487,16 +596,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.mainPanel);
             this.Name = "MenuControl";
-            this.Size = new System.Drawing.Size(1200, 800);
+            this.Size = new System.Drawing.Size(1133, 660);
             this.Load += new System.EventHandler(this.MenuControl_Load);
             this.mainPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
             this.categoryPanel.ResumeLayout(false);
             this.categoryPanel.PerformLayout();
+            this.actionPanel.ResumeLayout(false);
+            this.actionPanel.PerformLayout();
             this.menuItemsPanel.ResumeLayout(false);
             this.menuItemsPanel.PerformLayout();
-            this.actionPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -525,5 +636,15 @@
         private FrameworkTest.SATAButton btnDeleteItem;
         private FrameworkTest.SATAButton btnToggleAvailability;
         private System.Windows.Forms.Timer updateTimer;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtName;
+        private ComponentFactory.Krypton.Toolkit.KryptonContextMenu kryptonContextMenu1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtAvailability;
     }
 }

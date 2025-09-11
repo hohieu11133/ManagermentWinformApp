@@ -38,4 +38,16 @@ C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-mai
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\ComponentFactory.Krypton.Toolkit.pdb
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\ComponentFactory.Krypton.Workspace.pdb
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.LoginForm.resources
-C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.LoginControl.resources
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.Control.LoginControl.resources
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.Control.RegisterControl.resources
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.Control.LoginControl1.resources
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Buffers.dll
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Memory.dll
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\BCrypt.Net-Next.xml
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Buffers.xml
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Memory.xml
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

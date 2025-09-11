@@ -32,13 +32,13 @@
             SATAUiFramework.BorderRadius borderRadius1 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius2 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius3 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius4 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius5 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius6 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius7 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius8 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius9 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius10 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius4 = new SATAUiFramework.BorderRadius();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.headerPanel = new SATAUiFramework.SATAPanel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -57,6 +57,12 @@
             this.tablesPanel = new SATAUiFramework.SATAPanel();
             this.lblTablesTitle = new System.Windows.Forms.Label();
             this.tablesFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.table1 = new SATAUiFramework.SATAPanel();
+            this.table1Icon = new System.Windows.Forms.PictureBox();
+            this.table1Number = new System.Windows.Forms.Label();
+            this.table1Status = new System.Windows.Forms.Label();
+            this.table1Seats = new System.Windows.Forms.Label();
+            this.table1Time = new System.Windows.Forms.Label();
             this.table2 = new SATAUiFramework.SATAPanel();
             this.table2Icon = new System.Windows.Forms.PictureBox();
             this.table2Number = new System.Windows.Forms.Label();
@@ -97,17 +103,13 @@
             this.btnReserveTable = new FrameworkTest.SATAButton();
             this.lblRevenueValue = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
-            this.table1Time = new System.Windows.Forms.Label();
-            this.table1Seats = new System.Windows.Forms.Label();
-            this.table1Status = new System.Windows.Forms.Label();
-            this.table1Number = new System.Windows.Forms.Label();
-            this.table1Icon = new System.Windows.Forms.PictureBox();
-            this.table1 = new SATAUiFramework.SATAPanel();
             this.mainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.statusPanel.SuspendLayout();
             this.tablesPanel.SuspendLayout();
             this.tablesFlowPanel.SuspendLayout();
+            this.table1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.table1Icon)).BeginInit();
             this.table2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table2Icon)).BeginInit();
             this.table3.SuspendLayout();
@@ -119,8 +121,6 @@
             this.table6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table6Icon)).BeginInit();
             this.actionPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.table1Icon)).BeginInit();
-            this.table1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -134,7 +134,7 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Padding = new System.Windows.Forms.Padding(20);
-            this.mainPanel.Size = new System.Drawing.Size(1200, 800);
+            this.mainPanel.Size = new System.Drawing.Size(1133, 660);
             this.mainPanel.TabIndex = 0;
             // 
             // headerPanel
@@ -153,7 +153,7 @@
             this.headerPanel.Controls.Add(this.lblDateTime);
             this.headerPanel.Location = new System.Drawing.Point(20, 20);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(903, 70);
+            this.headerPanel.Size = new System.Drawing.Size(1096, 70);
             this.headerPanel.TabIndex = 0;
             // 
             // lblTitle
@@ -189,7 +189,7 @@
             this.btnRefresh.ImageTint = System.Drawing.Color.White;
             this.btnRefresh.IsToggleButton = false;
             this.btnRefresh.IsToggled = false;
-            this.btnRefresh.Location = new System.Drawing.Point(763, 20);
+            this.btnRefresh.Location = new System.Drawing.Point(956, 20);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -213,7 +213,7 @@
             this.lblDateTime.AutoSize = true;
             this.lblDateTime.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.lblDateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
-            this.lblDateTime.Location = new System.Drawing.Point(593, 28);
+            this.lblDateTime.Location = new System.Drawing.Point(786, 28);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(140, 21);
             this.lblDateTime.TabIndex = 2;
@@ -239,7 +239,7 @@
             this.statusPanel.Controls.Add(this.lblReserved);
             this.statusPanel.Controls.Add(this.pnlCleaning);
             this.statusPanel.Controls.Add(this.lblCleaning);
-            this.statusPanel.Location = new System.Drawing.Point(20, 100);
+            this.statusPanel.Location = new System.Drawing.Point(836, 96);
             this.statusPanel.Name = "statusPanel";
             this.statusPanel.Size = new System.Drawing.Size(280, 120);
             this.statusPanel.TabIndex = 1;
@@ -344,9 +344,9 @@
             this.tablesPanel.BorderThickness = 1;
             this.tablesPanel.Controls.Add(this.lblTablesTitle);
             this.tablesPanel.Controls.Add(this.tablesFlowPanel);
-            this.tablesPanel.Location = new System.Drawing.Point(20, 240);
+            this.tablesPanel.Location = new System.Drawing.Point(23, 96);
             this.tablesPanel.Name = "tablesPanel";
-            this.tablesPanel.Size = new System.Drawing.Size(617, 540);
+            this.tablesPanel.Size = new System.Drawing.Size(790, 561);
             this.tablesPanel.TabIndex = 3;
             // 
             // lblTablesTitle
@@ -371,9 +371,84 @@
             this.tablesFlowPanel.Controls.Add(this.table6);
             this.tablesFlowPanel.Location = new System.Drawing.Point(20, 50);
             this.tablesFlowPanel.Name = "tablesFlowPanel";
-            this.tablesFlowPanel.Size = new System.Drawing.Size(580, 480);
+            this.tablesFlowPanel.Size = new System.Drawing.Size(754, 508);
             this.tablesFlowPanel.TabIndex = 1;
             this.tablesFlowPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tablesFlowPanel_Paint);
+            // 
+            // table1
+            // 
+            this.table1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.table1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.table1.BorderColor = System.Drawing.Color.Transparent;
+            borderRadius4.BottomLeft = 15;
+            borderRadius4.BottomRight = 15;
+            borderRadius4.TopLeft = 15;
+            borderRadius4.TopRight = 15;
+            this.table1.BorderRadius = borderRadius4;
+            this.table1.BorderThickness = 0;
+            this.table1.Controls.Add(this.table1Icon);
+            this.table1.Controls.Add(this.table1Number);
+            this.table1.Controls.Add(this.table1Status);
+            this.table1.Controls.Add(this.table1Seats);
+            this.table1.Controls.Add(this.table1Time);
+            this.table1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.table1.Location = new System.Drawing.Point(3, 3);
+            this.table1.Name = "table1";
+            this.table1.Size = new System.Drawing.Size(180, 120);
+            this.table1.TabIndex = 0;
+            this.table1.Click += new System.EventHandler(this.tablePanel_Click);
+            // 
+            // table1Icon
+            // 
+            this.table1Icon.Location = new System.Drawing.Point(20, 20);
+            this.table1Icon.Name = "table1Icon";
+            this.table1Icon.Size = new System.Drawing.Size(40, 40);
+            this.table1Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.table1Icon.TabIndex = 0;
+            this.table1Icon.TabStop = false;
+            // 
+            // table1Number
+            // 
+            this.table1Number.AutoSize = true;
+            this.table1Number.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.table1Number.ForeColor = System.Drawing.Color.White;
+            this.table1Number.Location = new System.Drawing.Point(70, 20);
+            this.table1Number.Name = "table1Number";
+            this.table1Number.Size = new System.Drawing.Size(79, 23);
+            this.table1Number.TabIndex = 1;
+            this.table1Number.Text = "Table 1";
+            // 
+            // table1Status
+            // 
+            this.table1Status.AutoSize = true;
+            this.table1Status.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.table1Status.ForeColor = System.Drawing.Color.White;
+            this.table1Status.Location = new System.Drawing.Point(70, 50);
+            this.table1Status.Name = "table1Status";
+            this.table1Status.Size = new System.Drawing.Size(79, 20);
+            this.table1Status.TabIndex = 2;
+            this.table1Status.Text = "Available";
+            // 
+            // table1Seats
+            // 
+            this.table1Seats.AutoSize = true;
+            this.table1Seats.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.table1Seats.ForeColor = System.Drawing.Color.White;
+            this.table1Seats.Location = new System.Drawing.Point(70, 75);
+            this.table1Seats.Name = "table1Seats";
+            this.table1Seats.Size = new System.Drawing.Size(59, 20);
+            this.table1Seats.TabIndex = 3;
+            this.table1Seats.Text = "4 Seats";
+            // 
+            // table1Time
+            // 
+            this.table1Time.AutoSize = true;
+            this.table1Time.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.table1Time.ForeColor = System.Drawing.Color.White;
+            this.table1Time.Location = new System.Drawing.Point(70, 100);
+            this.table1Time.Name = "table1Time";
+            this.table1Time.Size = new System.Drawing.Size(0, 20);
+            this.table1Time.TabIndex = 4;
             // 
             // table2
             // 
@@ -544,7 +619,7 @@
             this.table4.Controls.Add(this.table4Seats);
             this.table4.Controls.Add(this.table4Time);
             this.table4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.table4.Location = new System.Drawing.Point(3, 129);
+            this.table4.Location = new System.Drawing.Point(561, 3);
             this.table4.Name = "table4";
             this.table4.Size = new System.Drawing.Size(180, 120);
             this.table4.TabIndex = 3;
@@ -619,7 +694,7 @@
             this.table5.Controls.Add(this.table5Seats);
             this.table5.Controls.Add(this.table5Time);
             this.table5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.table5.Location = new System.Drawing.Point(189, 129);
+            this.table5.Location = new System.Drawing.Point(3, 129);
             this.table5.Name = "table5";
             this.table5.Size = new System.Drawing.Size(180, 120);
             this.table5.TabIndex = 4;
@@ -694,7 +769,7 @@
             this.table6.Controls.Add(this.table6Seats);
             this.table6.Controls.Add(this.table6Time);
             this.table6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.table6.Location = new System.Drawing.Point(375, 129);
+            this.table6.Location = new System.Drawing.Point(189, 129);
             this.table6.Name = "table6";
             this.table6.Size = new System.Drawing.Size(180, 120);
             this.table6.TabIndex = 5;
@@ -771,9 +846,9 @@
             this.actionPanel.Controls.Add(this.btnBillPayment);
             this.actionPanel.Controls.Add(this.btnCleanTable);
             this.actionPanel.Controls.Add(this.btnReserveTable);
-            this.actionPanel.Location = new System.Drawing.Point(643, 240);
+            this.actionPanel.Location = new System.Drawing.Point(836, 229);
             this.actionPanel.Name = "actionPanel";
-            this.actionPanel.Size = new System.Drawing.Size(280, 540);
+            this.actionPanel.Size = new System.Drawing.Size(280, 428);
             this.actionPanel.TabIndex = 4;
             // 
             // lblActionTitle
@@ -1009,88 +1084,13 @@
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
-            // table1Time
-            // 
-            this.table1Time.AutoSize = true;
-            this.table1Time.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.table1Time.ForeColor = System.Drawing.Color.White;
-            this.table1Time.Location = new System.Drawing.Point(70, 100);
-            this.table1Time.Name = "table1Time";
-            this.table1Time.Size = new System.Drawing.Size(0, 20);
-            this.table1Time.TabIndex = 4;
-            // 
-            // table1Seats
-            // 
-            this.table1Seats.AutoSize = true;
-            this.table1Seats.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.table1Seats.ForeColor = System.Drawing.Color.White;
-            this.table1Seats.Location = new System.Drawing.Point(70, 75);
-            this.table1Seats.Name = "table1Seats";
-            this.table1Seats.Size = new System.Drawing.Size(59, 20);
-            this.table1Seats.TabIndex = 3;
-            this.table1Seats.Text = "4 Seats";
-            // 
-            // table1Status
-            // 
-            this.table1Status.AutoSize = true;
-            this.table1Status.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.table1Status.ForeColor = System.Drawing.Color.White;
-            this.table1Status.Location = new System.Drawing.Point(70, 50);
-            this.table1Status.Name = "table1Status";
-            this.table1Status.Size = new System.Drawing.Size(79, 20);
-            this.table1Status.TabIndex = 2;
-            this.table1Status.Text = "Available";
-            // 
-            // table1Number
-            // 
-            this.table1Number.AutoSize = true;
-            this.table1Number.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.table1Number.ForeColor = System.Drawing.Color.White;
-            this.table1Number.Location = new System.Drawing.Point(70, 20);
-            this.table1Number.Name = "table1Number";
-            this.table1Number.Size = new System.Drawing.Size(79, 23);
-            this.table1Number.TabIndex = 1;
-            this.table1Number.Text = "Table 1";
-            // 
-            // table1Icon
-            // 
-            this.table1Icon.Location = new System.Drawing.Point(20, 20);
-            this.table1Icon.Name = "table1Icon";
-            this.table1Icon.Size = new System.Drawing.Size(40, 40);
-            this.table1Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.table1Icon.TabIndex = 0;
-            this.table1Icon.TabStop = false;
-            // 
-            // table1
-            // 
-            this.table1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.table1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.table1.BorderColor = System.Drawing.Color.Transparent;
-            borderRadius4.BottomLeft = 15;
-            borderRadius4.BottomRight = 15;
-            borderRadius4.TopLeft = 15;
-            borderRadius4.TopRight = 15;
-            this.table1.BorderRadius = borderRadius4;
-            this.table1.BorderThickness = 0;
-            this.table1.Controls.Add(this.table1Icon);
-            this.table1.Controls.Add(this.table1Number);
-            this.table1.Controls.Add(this.table1Status);
-            this.table1.Controls.Add(this.table1Seats);
-            this.table1.Controls.Add(this.table1Time);
-            this.table1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.table1.Location = new System.Drawing.Point(3, 3);
-            this.table1.Name = "table1";
-            this.table1.Size = new System.Drawing.Size(180, 120);
-            this.table1.TabIndex = 0;
-            this.table1.Click += new System.EventHandler(this.tablePanel_Click);
-            // 
             // RestaurantControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.mainPanel);
             this.Name = "RestaurantControl";
-            this.Size = new System.Drawing.Size(1200, 800);
+            this.Size = new System.Drawing.Size(1133, 660);
             this.Load += new System.EventHandler(this.RestaurantControl_Load);
             this.mainPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
@@ -1100,6 +1100,9 @@
             this.tablesPanel.ResumeLayout(false);
             this.tablesPanel.PerformLayout();
             this.tablesFlowPanel.ResumeLayout(false);
+            this.table1.ResumeLayout(false);
+            this.table1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.table1Icon)).EndInit();
             this.table2.ResumeLayout(false);
             this.table2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table2Icon)).EndInit();
@@ -1117,9 +1120,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.table6Icon)).EndInit();
             this.actionPanel.ResumeLayout(false);
             this.actionPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.table1Icon)).EndInit();
-            this.table1.ResumeLayout(false);
-            this.table1.PerformLayout();
             this.ResumeLayout(false);
 
         }

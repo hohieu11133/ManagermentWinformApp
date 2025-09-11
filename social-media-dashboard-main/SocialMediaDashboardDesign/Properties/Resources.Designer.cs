@@ -83,6 +83,16 @@ namespace SocialMediaDashboardDesign.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap holderpic {
+            get {
+                object obj = ResourceManager.GetObject("holderpic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icon_MISA_CukCuk {
             get {
                 object obj = ResourceManager.GetObject("Icon-MISA-CukCuk", resourceCulture);
@@ -116,6 +126,26 @@ namespace SocialMediaDashboardDesign.Properties {
         internal static System.Drawing.Bitmap mc_yellw {
             get {
                 object obj = ResourceManager.GetObject("mc-yellw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap usericon {
+            get {
+                object obj = ResourceManager.GetObject("usericon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap usericon1 {
+            get {
+                object obj = ResourceManager.GetObject("usericon1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
