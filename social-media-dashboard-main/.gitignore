@@ -1,0 +1,59 @@
+# Visual Studio cache
+SocialMediaDashboardDesign/.vs/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Tt]emp/
+[Tt]estResults/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Visual Studio auto-generated files
+*.dbmdl
+*.bak
+*.Backup
+*.Cache
+*.ide
+*.ilk
+*.log
+*.pdb
+*.tmp
+*.vspscc
+*_i.c
+*_p.c
+*.iobj
+*.ipdb
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Publish
+publish/
+*.publishsettings
+
+# Others
+*.swp
+*.DS_Store
