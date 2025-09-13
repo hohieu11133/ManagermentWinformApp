@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SocialMediaDashboardDesign.BLL;
+using System;
 using System.Collections.Generic;
+using System.Configuration; // để đọc từ App.config
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration; // để đọc từ App.config
+using System.Windows.Forms;
 
 namespace SocialMediaDashboardDesign.DataAccess
 {
@@ -49,20 +51,29 @@ namespace SocialMediaDashboardDesign.DataAccess
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT m.MenuItemID, m.Name, m.Price, c.Name AS Category, m.IsAvailable
-                                 FROM MenuItems m
-                                 LEFT JOIN Categories c ON m.CategoryID = c.CategoryID
-                                 WHERE m.Name LIKE @keyword";
+                string query = @"
+            SELECT m.MenuItemID, m.Name, m.Price, c.Name AS Category, m.IsAvailable
+            FROM MenuItems m
+            LEFT JOIN Categories c ON m.CategoryID = c.CategoryID
+            WHERE (@keyword = '' OR m.Name LIKE @keyword)";
 
-                if (categoryId.HasValue)
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+
+                // Nếu keyword rỗng thì truyền "" để bỏ qua
+                if (string.IsNullOrWhiteSpace(keyword) || keyword == "Search items...")
+                    cmd.Parameters.AddWithValue("@keyword", "");
+                else
+                    cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+
+                // Chỉ lọc khi categoryId > 0
+                if (categoryId.HasValue && categoryId.Value > 0)
                 {
                     query += " AND m.CategoryID = @categoryId";
+                    cmd.Parameters.AddWithValue("@categoryId", categoryId.Value);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
-                if (categoryId.HasValue)
-                    cmd.Parameters.AddWithValue("@categoryId", categoryId.Value);
+                cmd.CommandText = query;
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -70,6 +81,9 @@ namespace SocialMediaDashboardDesign.DataAccess
                 return dt;
             }
         }
+
+
+
 
         public DataRow GetMenuItemById(int id)
         {

@@ -18,10 +18,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            SATAUiFramework.BorderRadius borderRadius5 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius6 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius7 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius8 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius1 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius2 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius3 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius4 = new SATAUiFramework.BorderRadius();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.headerPanel = new SATAUiFramework.SATAPanel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -32,10 +32,15 @@
             this.lblCategoryTitle = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.actionPanel = new SATAUiFramework.SATAPanel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtAvailability = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddItem = new FrameworkTest.SATAButton();
             this.btnEditItem = new FrameworkTest.SATAButton();
             this.btnDeleteItem = new FrameworkTest.SATAButton();
@@ -49,17 +54,12 @@
             this.columnAvailability = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.kryptonContextMenu1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenu();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtAvailability = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.categoryPanel.SuspendLayout();
             this.actionPanel.SuspendLayout();
-            this.menuItemsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuItemsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -82,11 +82,11 @@
             this.headerPanel.BackColor = System.Drawing.Color.White;
             this.headerPanel.BackColor2 = System.Drawing.Color.White;
             this.headerPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius5.BottomLeft = 15;
-            borderRadius5.BottomRight = 15;
-            borderRadius5.TopLeft = 15;
-            borderRadius5.TopRight = 15;
-            this.headerPanel.BorderRadius = borderRadius5;
+            borderRadius1.BottomLeft = 15;
+            borderRadius1.BottomRight = 15;
+            borderRadius1.TopLeft = 15;
+            borderRadius1.TopRight = 15;
+            this.headerPanel.BorderRadius = borderRadius1;
             this.headerPanel.BorderThickness = 1;
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.btnRefresh);
@@ -204,11 +204,11 @@
             this.categoryPanel.BackColor = System.Drawing.Color.White;
             this.categoryPanel.BackColor2 = System.Drawing.Color.White;
             this.categoryPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius6.BottomLeft = 15;
-            borderRadius6.BottomRight = 15;
-            borderRadius6.TopLeft = 15;
-            borderRadius6.TopRight = 15;
-            this.categoryPanel.BorderRadius = borderRadius6;
+            borderRadius2.BottomLeft = 15;
+            borderRadius2.BottomRight = 15;
+            borderRadius2.TopLeft = 15;
+            borderRadius2.TopRight = 15;
+            this.categoryPanel.BorderRadius = borderRadius2;
             this.categoryPanel.BorderThickness = 1;
             this.categoryPanel.Controls.Add(this.lblCategoryTitle);
             this.categoryPanel.Controls.Add(this.categoryComboBox);
@@ -250,11 +250,11 @@
             this.actionPanel.BackColor = System.Drawing.Color.White;
             this.actionPanel.BackColor2 = System.Drawing.Color.White;
             this.actionPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius7.BottomLeft = 15;
-            borderRadius7.BottomRight = 15;
-            borderRadius7.TopLeft = 15;
-            borderRadius7.TopRight = 15;
-            this.actionPanel.BorderRadius = borderRadius7;
+            borderRadius3.BottomLeft = 15;
+            borderRadius3.BottomRight = 15;
+            borderRadius3.TopLeft = 15;
+            borderRadius3.TopRight = 15;
+            this.actionPanel.BorderRadius = borderRadius3;
             this.actionPanel.BorderThickness = 1;
             this.actionPanel.Controls.Add(this.comboBox1);
             this.actionPanel.Controls.Add(this.label4);
@@ -273,6 +273,48 @@
             this.actionPanel.Name = "actionPanel";
             this.actionPanel.Size = new System.Drawing.Size(238, 450);
             this.actionPanel.TabIndex = 3;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "All",
+            "Appetizers",
+            "Main Courses",
+            "Desserts",
+            "Beverages"});
+            this.comboBox1.Location = new System.Drawing.Point(100, 75);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(120, 29);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(105, 57);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 16);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "category";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(105, 141);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 16);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "availability";
+            // 
+            // txtAvailability
+            // 
+            this.txtAvailability.Location = new System.Drawing.Point(105, 155);
+            this.txtAvailability.Name = "txtAvailability";
+            this.txtAvailability.Size = new System.Drawing.Size(117, 22);
+            this.txtAvailability.TabIndex = 10;
+            this.txtAvailability.Text = "ass";
             // 
             // label2
             // 
@@ -307,6 +349,17 @@
             this.txtName.Size = new System.Drawing.Size(117, 22);
             this.txtName.TabIndex = 6;
             this.txtName.Text = "ass";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SocialMediaDashboardDesign.Properties.Resources.holderpic;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(92, 147);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnAddItem
             // 
@@ -469,11 +522,11 @@
             this.menuItemsPanel.BackColor = System.Drawing.Color.White;
             this.menuItemsPanel.BackColor2 = System.Drawing.Color.White;
             this.menuItemsPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius8.BottomLeft = 15;
-            borderRadius8.BottomRight = 15;
-            borderRadius8.TopLeft = 15;
-            borderRadius8.TopRight = 15;
-            this.menuItemsPanel.BorderRadius = borderRadius8;
+            borderRadius4.BottomLeft = 15;
+            borderRadius4.BottomRight = 15;
+            borderRadius4.TopLeft = 15;
+            borderRadius4.TopRight = 15;
+            this.menuItemsPanel.BorderRadius = borderRadius4;
             this.menuItemsPanel.BorderThickness = 1;
             this.menuItemsPanel.Controls.Add(this.lblMenuItemsTitle);
             this.menuItemsPanel.Controls.Add(this.menuItemsListView);
@@ -537,59 +590,6 @@
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "All",
-            "Appetizers",
-            "Main Courses",
-            "Desserts",
-            "Beverages"});
-            this.comboBox1.Location = new System.Drawing.Point(100, 75);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(120, 29);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(105, 141);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 16);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "availability";
-            // 
-            // txtAvailability
-            // 
-            this.txtAvailability.Location = new System.Drawing.Point(105, 155);
-            this.txtAvailability.Name = "txtAvailability";
-            this.txtAvailability.Size = new System.Drawing.Size(117, 22);
-            this.txtAvailability.TabIndex = 10;
-            this.txtAvailability.Text = "ass";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(105, 57);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 16);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "category";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SocialMediaDashboardDesign.Properties.Resources.holderpic;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(92, 147);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // MenuControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -605,9 +605,9 @@
             this.categoryPanel.PerformLayout();
             this.actionPanel.ResumeLayout(false);
             this.actionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuItemsPanel.ResumeLayout(false);
             this.menuItemsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

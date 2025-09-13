@@ -49,14 +49,14 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.sataPanel5 = new SATAUiFramework.SATAPanel();
+            this.YearcomboBox = new System.Windows.Forms.ComboBox();
             this.sataBarChart1 = new SATAUi.Controls.Charts.SATABarChart();
             this.label15 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.sataPanel7 = new SATAUiFramework.SATAPanel();
+            this.MonthcomboBox = new System.Windows.Forms.ComboBox();
             this.sataLineChart1 = new FrameworkTest.Charts.SATALineChart();
             this.label28 = new System.Windows.Forms.Label();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.sataPanel1 = new SATAUiFramework.SATAPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -71,7 +71,6 @@
             this.sataPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.sataPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             this.sataPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -252,14 +251,32 @@
             borderRadius4.TopRight = 10;
             this.sataPanel5.BorderRadius = borderRadius4;
             this.sataPanel5.BorderThickness = 0;
+            this.sataPanel5.Controls.Add(this.YearcomboBox);
             this.sataPanel5.Controls.Add(this.sataBarChart1);
             this.sataPanel5.Controls.Add(this.label15);
             this.sataPanel5.Controls.Add(this.pictureBox6);
-            this.sataPanel5.Controls.Add(this.label16);
             this.sataPanel5.Location = new System.Drawing.Point(28, 124);
             this.sataPanel5.Name = "sataPanel5";
             this.sataPanel5.Size = new System.Drawing.Size(777, 318);
             this.sataPanel5.TabIndex = 0;
+            this.sataPanel5.Paint += new System.Windows.Forms.PaintEventHandler(this.sataPanel5_Paint);
+            // 
+            // YearcomboBox
+            // 
+            this.YearcomboBox.FormattingEnabled = true;
+            this.YearcomboBox.Items.AddRange(new object[] {
+            "2020\t",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"});
+            this.YearcomboBox.Location = new System.Drawing.Point(627, 20);
+            this.YearcomboBox.Name = "YearcomboBox";
+            this.YearcomboBox.Size = new System.Drawing.Size(121, 24);
+            this.YearcomboBox.TabIndex = 3;
+            this.YearcomboBox.Text = "Chọn năm";
+            this.YearcomboBox.SelectedIndexChanged += new System.EventHandler(this.YearcomboBox_SelectedIndexChanged);
             // 
             // sataBarChart1
             // 
@@ -298,13 +315,15 @@
         55F};
             this.sataBarChart1.DayColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.sataBarChart1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.sataBarChart1.Location = new System.Drawing.Point(12, 53);
+            this.sataBarChart1.Location = new System.Drawing.Point(3, 46);
             this.sataBarChart1.MaxValue = 75F;
             this.sataBarChart1.Name = "sataBarChart1";
             this.sataBarChart1.RoundedBars = true;
             this.sataBarChart1.Size = new System.Drawing.Size(736, 262);
             this.sataBarChart1.TabIndex = 2;
             this.sataBarChart1.UsePercent = false;
+            this.sataBarChart1.Load += new System.EventHandler(this.sataBarChart1_Load);
+            this.sataBarChart1.Click += new System.EventHandler(this.sataBarChart1_Click);
             // 
             // label15
             // 
@@ -327,16 +346,6 @@
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label16.Location = new System.Drawing.Point(702, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 16);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "View All";
-            // 
             // sataPanel7
             // 
             this.sataPanel7.BackColor = System.Drawing.Color.White;
@@ -348,13 +357,36 @@
             borderRadius5.TopRight = 10;
             this.sataPanel7.BorderRadius = borderRadius5;
             this.sataPanel7.BorderThickness = 0;
+            this.sataPanel7.Controls.Add(this.MonthcomboBox);
             this.sataPanel7.Controls.Add(this.sataLineChart1);
             this.sataPanel7.Controls.Add(this.label28);
-            this.sataPanel7.Controls.Add(this.pictureBox17);
             this.sataPanel7.Location = new System.Drawing.Point(28, 448);
             this.sataPanel7.Name = "sataPanel7";
-            this.sataPanel7.Size = new System.Drawing.Size(504, 198);
+            this.sataPanel7.Size = new System.Drawing.Size(777, 198);
             this.sataPanel7.TabIndex = 0;
+            // 
+            // MonthcomboBox
+            // 
+            this.MonthcomboBox.FormattingEnabled = true;
+            this.MonthcomboBox.Items.AddRange(new object[] {
+            "Jan",
+            "Feb",
+            "Mar ",
+            "Apr",
+            "May",
+            "June ",
+            "July",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"});
+            this.MonthcomboBox.Location = new System.Drawing.Point(627, 14);
+            this.MonthcomboBox.Name = "MonthcomboBox";
+            this.MonthcomboBox.Size = new System.Drawing.Size(121, 24);
+            this.MonthcomboBox.TabIndex = 4;
+            this.MonthcomboBox.Text = "Chọn tháng";
+            this.MonthcomboBox.SelectedIndexChanged += new System.EventHandler(this.MonthcomboBox_SelectedIndexChanged);
             // 
             // sataLineChart1
             // 
@@ -380,10 +412,11 @@
             this.sataLineChart1.Name = "sataLineChart1";
             this.sataLineChart1.PointColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(79)))), ((int)(((byte)(165)))));
             this.sataLineChart1.ShortDates = true;
-            this.sataLineChart1.Size = new System.Drawing.Size(473, 166);
+            this.sataLineChart1.Size = new System.Drawing.Size(751, 166);
             this.sataLineChart1.TabIndex = 2;
             this.sataLineChart1.UseBezier = true;
             this.sataLineChart1.UsePercent = false;
+            this.sataLineChart1.Load += new System.EventHandler(this.sataLineChart1_Load);
             // 
             // label28
             // 
@@ -395,16 +428,6 @@
             this.label28.Size = new System.Drawing.Size(102, 23);
             this.label28.TabIndex = 1;
             this.label28.Text = "Line Chart";
-            // 
-            // pictureBox17
-            // 
-            this.pictureBox17.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox17.Image")));
-            this.pictureBox17.Location = new System.Drawing.Point(473, 11);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(18, 23);
-            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox17.TabIndex = 0;
-            this.pictureBox17.TabStop = false;
             // 
             // sataPanel1
             // 
@@ -478,7 +501,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.sataPanel7.ResumeLayout(false);
             this.sataPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             this.sataPanel1.ResumeLayout(false);
             this.sataPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -505,14 +527,14 @@
         private SATAUi.Controls.Charts.SATABarChart sataBarChart1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Label label16;
         private SATAUiFramework.SATAPanel sataPanel7;
         private FrameworkTest.Charts.SATALineChart sataLineChart1;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.PictureBox pictureBox17;
         private SATAUiFramework.SATAPanel sataPanel1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox YearcomboBox;
+        private System.Windows.Forms.ComboBox MonthcomboBox;
     }
 }

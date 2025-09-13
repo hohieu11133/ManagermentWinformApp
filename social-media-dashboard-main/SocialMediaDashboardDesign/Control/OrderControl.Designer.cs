@@ -46,22 +46,29 @@
             this.lblSelectedTable = new System.Windows.Forms.Label();
             this.orderItemsPanel = new SATAUiFramework.SATAPanel();
             this.lblOrderItemsTitle = new System.Windows.Forms.Label();
-            this.orderItemsListView = new System.Windows.Forms.ListView();
-            this.columnItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuSelectionPanel = new SATAUiFramework.SATAPanel();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.menuListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblMenuTitle = new System.Windows.Forms.Label();
-            this.menuFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnAddMenuItem = new FrameworkTest.SATAButton();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.OrderGridView = new System.Windows.Forms.DataGridView();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Editbtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.mainPanel.SuspendLayout();
             this.orderSummaryPanel.SuspendLayout();
             this.actionPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.orderItemsPanel.SuspendLayout();
             this.menuSelectionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -76,8 +83,9 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Padding = new System.Windows.Forms.Padding(20);
-            this.mainPanel.Size = new System.Drawing.Size(1200, 800);
+            this.mainPanel.Size = new System.Drawing.Size(1134, 668);
             this.mainPanel.TabIndex = 0;
+            this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
             // orderSummaryPanel
             // 
@@ -99,10 +107,11 @@
             this.orderSummaryPanel.Controls.Add(this.lblTotalAmountValue);
             this.orderSummaryPanel.Controls.Add(this.lblOrderStatus);
             this.orderSummaryPanel.Controls.Add(this.lblOrderStatusValue);
-            this.orderSummaryPanel.Location = new System.Drawing.Point(897, 96);
+            this.orderSummaryPanel.Location = new System.Drawing.Point(834, 96);
             this.orderSummaryPanel.Name = "orderSummaryPanel";
             this.orderSummaryPanel.Size = new System.Drawing.Size(280, 176);
             this.orderSummaryPanel.TabIndex = 5;
+            this.orderSummaryPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.orderSummaryPanel_Paint);
             // 
             // lblOrderSummaryTitle
             // 
@@ -219,10 +228,11 @@
             this.actionPanel.Controls.Add(this.btnRemoveItem);
             this.actionPanel.Controls.Add(this.btnConfirmOrder);
             this.actionPanel.Controls.Add(this.btnCancelOrder);
-            this.actionPanel.Location = new System.Drawing.Point(897, 278);
+            this.actionPanel.Location = new System.Drawing.Point(834, 278);
             this.actionPanel.Name = "actionPanel";
-            this.actionPanel.Size = new System.Drawing.Size(280, 498);
+            this.actionPanel.Size = new System.Drawing.Size(280, 382);
             this.actionPanel.TabIndex = 6;
+            this.actionPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.actionPanel_Paint);
             // 
             // btnAddItem
             // 
@@ -261,10 +271,11 @@
             this.btnAddItem.TabIndex = 0;
             this.btnAddItem.TextAutoCenter = true;
             this.btnAddItem.TextOffset = new System.Drawing.Point(0, 0);
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
             // btnEditItem
             // 
-            this.btnEditItem.ButtonText = "✏️ Edit Item";
+            this.btnEditItem.ButtonText = "Edit Item";
             this.btnEditItem.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnEditItem.CheckedForeColor = System.Drawing.Color.White;
             this.btnEditItem.CheckedImageTint = System.Drawing.Color.White;
@@ -299,10 +310,11 @@
             this.btnEditItem.TabIndex = 1;
             this.btnEditItem.TextAutoCenter = true;
             this.btnEditItem.TextOffset = new System.Drawing.Point(0, 0);
+            this.btnEditItem.Click += new System.EventHandler(this.btnEditItem_Click_1);
             // 
             // btnRemoveItem
             // 
-            this.btnRemoveItem.ButtonText = "🗑️ Remove Item";
+            this.btnRemoveItem.ButtonText = " Remove Item";
             this.btnRemoveItem.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnRemoveItem.CheckedForeColor = System.Drawing.Color.White;
             this.btnRemoveItem.CheckedImageTint = System.Drawing.Color.White;
@@ -375,6 +387,7 @@
             this.btnConfirmOrder.TabIndex = 3;
             this.btnConfirmOrder.TextAutoCenter = true;
             this.btnConfirmOrder.TextOffset = new System.Drawing.Point(0, 0);
+            this.btnConfirmOrder.Click += new System.EventHandler(this.btnConfirmOrder_Click_1);
             // 
             // btnCancelOrder
             // 
@@ -413,6 +426,7 @@
             this.btnCancelOrder.TabIndex = 4;
             this.btnCancelOrder.TextAutoCenter = true;
             this.btnCancelOrder.TextOffset = new System.Drawing.Point(0, 0);
+            this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click_1);
             // 
             // headerPanel
             // 
@@ -430,8 +444,9 @@
             this.headerPanel.Controls.Add(this.lblSelectedTable);
             this.headerPanel.Location = new System.Drawing.Point(20, 20);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1160, 70);
+            this.headerPanel.Size = new System.Drawing.Size(1094, 70);
             this.headerPanel.TabIndex = 0;
+            this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
             // lblTitle
             // 
@@ -443,6 +458,7 @@
             this.lblTitle.Size = new System.Drawing.Size(307, 37);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Order Management";
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // btnRefresh
             // 
@@ -465,7 +481,7 @@
             this.btnRefresh.ImageTint = System.Drawing.Color.White;
             this.btnRefresh.IsToggleButton = false;
             this.btnRefresh.IsToggled = false;
-            this.btnRefresh.Location = new System.Drawing.Point(1020, 20);
+            this.btnRefresh.Location = new System.Drawing.Point(965, 12);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -488,7 +504,7 @@
             this.lblSelectedTable.AutoSize = true;
             this.lblSelectedTable.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.lblSelectedTable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
-            this.lblSelectedTable.Location = new System.Drawing.Point(850, 28);
+            this.lblSelectedTable.Location = new System.Drawing.Point(795, 20);
             this.lblSelectedTable.Name = "lblSelectedTable";
             this.lblSelectedTable.Size = new System.Drawing.Size(111, 21);
             this.lblSelectedTable.TabIndex = 2;
@@ -505,11 +521,11 @@
             borderRadius4.TopRight = 15;
             this.orderItemsPanel.BorderRadius = borderRadius4;
             this.orderItemsPanel.BorderThickness = 1;
+            this.orderItemsPanel.Controls.Add(this.OrderGridView);
             this.orderItemsPanel.Controls.Add(this.lblOrderItemsTitle);
-            this.orderItemsPanel.Controls.Add(this.orderItemsListView);
             this.orderItemsPanel.Location = new System.Drawing.Point(20, 96);
             this.orderItemsPanel.Name = "orderItemsPanel";
-            this.orderItemsPanel.Size = new System.Drawing.Size(860, 300);
+            this.orderItemsPanel.Size = new System.Drawing.Size(808, 276);
             this.orderItemsPanel.TabIndex = 2;
             // 
             // lblOrderItemsTitle
@@ -523,45 +539,6 @@
             this.lblOrderItemsTitle.TabIndex = 0;
             this.lblOrderItemsTitle.Text = "Order Items";
             // 
-            // orderItemsListView
-            // 
-            this.orderItemsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnItemName,
-            this.columnQuantity,
-            this.columnPrice,
-            this.columnTotal});
-            this.orderItemsListView.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.orderItemsListView.FullRowSelect = true;
-            this.orderItemsListView.GridLines = true;
-            this.orderItemsListView.HideSelection = false;
-            this.orderItemsListView.Location = new System.Drawing.Point(20, 50);
-            this.orderItemsListView.Name = "orderItemsListView";
-            this.orderItemsListView.Size = new System.Drawing.Size(820, 230);
-            this.orderItemsListView.TabIndex = 1;
-            this.orderItemsListView.UseCompatibleStateImageBehavior = false;
-            this.orderItemsListView.View = System.Windows.Forms.View.Details;
-            this.orderItemsListView.SelectedIndexChanged += new System.EventHandler(this.orderItemsListView_SelectedIndexChanged);
-            // 
-            // columnItemName
-            // 
-            this.columnItemName.Text = "Item Name";
-            this.columnItemName.Width = 400;
-            // 
-            // columnQuantity
-            // 
-            this.columnQuantity.Text = "Quantity";
-            this.columnQuantity.Width = 100;
-            // 
-            // columnPrice
-            // 
-            this.columnPrice.Text = "Price";
-            this.columnPrice.Width = 150;
-            // 
-            // columnTotal
-            // 
-            this.columnTotal.Text = "Total";
-            this.columnTotal.Width = 150;
-            // 
             // menuSelectionPanel
             // 
             this.menuSelectionPanel.BackColor = System.Drawing.Color.White;
@@ -573,13 +550,62 @@
             borderRadius5.TopRight = 15;
             this.menuSelectionPanel.BorderRadius = borderRadius5;
             this.menuSelectionPanel.BorderThickness = 1;
+            this.menuSelectionPanel.Controls.Add(this.txtSearch);
+            this.menuSelectionPanel.Controls.Add(this.categoryComboBox);
+            this.menuSelectionPanel.Controls.Add(this.menuListView);
             this.menuSelectionPanel.Controls.Add(this.lblMenuTitle);
-            this.menuSelectionPanel.Controls.Add(this.menuFlowPanel);
-            this.menuSelectionPanel.Controls.Add(this.btnAddMenuItem);
-            this.menuSelectionPanel.Location = new System.Drawing.Point(20, 402);
+            this.menuSelectionPanel.Location = new System.Drawing.Point(20, 378);
             this.menuSelectionPanel.Name = "menuSelectionPanel";
-            this.menuSelectionPanel.Size = new System.Drawing.Size(860, 370);
+            this.menuSelectionPanel.Size = new System.Drawing.Size(808, 287);
             this.menuSelectionPanel.TabIndex = 3;
+            // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(387, 7);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(105, 24);
+            this.categoryComboBox.TabIndex = 3;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
+            // 
+            // menuListView
+            // 
+            this.menuListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.menuListView.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.menuListView.FullRowSelect = true;
+            this.menuListView.GridLines = true;
+            this.menuListView.HideSelection = false;
+            this.menuListView.Location = new System.Drawing.Point(24, 41);
+            this.menuListView.Name = "menuListView";
+            this.menuListView.Size = new System.Drawing.Size(772, 224);
+            this.menuListView.TabIndex = 2;
+            this.menuListView.UseCompatibleStateImageBehavior = false;
+            this.menuListView.View = System.Windows.Forms.View.Details;
+            this.menuListView.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 365;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Category";
+            this.columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Price";
+            this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Quantity";
+            this.columnHeader4.Width = 159;
             // 
             // lblMenuTitle
             // 
@@ -591,58 +617,80 @@
             this.lblMenuTitle.Size = new System.Drawing.Size(65, 23);
             this.lblMenuTitle.TabIndex = 0;
             this.lblMenuTitle.Text = "Menu";
-            // 
-            // menuFlowPanel
-            // 
-            this.menuFlowPanel.AutoScroll = true;
-            this.menuFlowPanel.Location = new System.Drawing.Point(20, 50);
-            this.menuFlowPanel.Name = "menuFlowPanel";
-            this.menuFlowPanel.Size = new System.Drawing.Size(820, 280);
-            this.menuFlowPanel.TabIndex = 1;
-            // 
-            // btnAddMenuItem
-            // 
-            this.btnAddMenuItem.ButtonText = "➕ Add Item";
-            this.btnAddMenuItem.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnAddMenuItem.CheckedForeColor = System.Drawing.Color.White;
-            this.btnAddMenuItem.CheckedImageTint = System.Drawing.Color.White;
-            this.btnAddMenuItem.CheckedOutline = System.Drawing.Color.Transparent;
-            this.btnAddMenuItem.CustomDialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnAddMenuItem.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.btnAddMenuItem.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnAddMenuItem.HoverForeColor = System.Drawing.Color.White;
-            this.btnAddMenuItem.HoverImage = null;
-            this.btnAddMenuItem.HoverImageTint = System.Drawing.Color.White;
-            this.btnAddMenuItem.HoverOutline = System.Drawing.Color.Transparent;
-            this.btnAddMenuItem.Image = null;
-            this.btnAddMenuItem.ImageAutoCenter = true;
-            this.btnAddMenuItem.ImageExpand = new System.Drawing.Point(3, 3);
-            this.btnAddMenuItem.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnAddMenuItem.ImageTint = System.Drawing.Color.White;
-            this.btnAddMenuItem.IsToggleButton = false;
-            this.btnAddMenuItem.IsToggled = false;
-            this.btnAddMenuItem.Location = new System.Drawing.Point(680, 15);
-            this.btnAddMenuItem.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnAddMenuItem.Name = "btnAddMenuItem";
-            this.btnAddMenuItem.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.btnAddMenuItem.NormalForeColor = System.Drawing.Color.White;
-            this.btnAddMenuItem.NormalOutline = System.Drawing.Color.Transparent;
-            this.btnAddMenuItem.OutlineThickness = 0F;
-            this.btnAddMenuItem.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnAddMenuItem.PressedForeColor = System.Drawing.Color.White;
-            this.btnAddMenuItem.PressedImageTint = System.Drawing.Color.White;
-            this.btnAddMenuItem.PressedOutline = System.Drawing.Color.Transparent;
-            this.btnAddMenuItem.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnAddMenuItem.Size = new System.Drawing.Size(160, 35);
-            this.btnAddMenuItem.TabIndex = 2;
-            this.btnAddMenuItem.TextAutoCenter = true;
-            this.btnAddMenuItem.TextOffset = new System.Drawing.Point(0, 0);
-            this.btnAddMenuItem.Click += new System.EventHandler(this.btnAddMenuItem_Click);
+            this.lblMenuTitle.Click += new System.EventHandler(this.lblMenuTitle_Click);
             // 
             // updateTimer
             // 
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.txtSearch.Location = new System.Drawing.Point(635, 7);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(161, 28);
+            this.txtSearch.TabIndex = 4;
+            this.txtSearch.Text = "Search items...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // OrderGridView
+            // 
+            this.OrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemName,
+            this.Quantity,
+            this.Price,
+            this.Total,
+            this.Editbtn});
+            this.OrderGridView.Location = new System.Drawing.Point(24, 50);
+            this.OrderGridView.Name = "OrderGridView";
+            this.OrderGridView.ReadOnly = true;
+            this.OrderGridView.RowHeadersWidth = 51;
+            this.OrderGridView.RowTemplate.Height = 24;
+            this.OrderGridView.Size = new System.Drawing.Size(772, 213);
+            this.OrderGridView.TabIndex = 1;
+            this.OrderGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Name";
+            this.ItemName.MinimumWidth = 6;
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            this.ItemName.Width = 300;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 125;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 125;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 125;
+            // 
+            // Editbtn
+            // 
+            this.Editbtn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Editbtn.HeaderText = "";
+            this.Editbtn.MinimumWidth = 6;
+            this.Editbtn.Name = "Editbtn";
+            this.Editbtn.ReadOnly = true;
             // 
             // OrderControl
             // 
@@ -650,7 +698,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.mainPanel);
             this.Name = "OrderControl";
-            this.Size = new System.Drawing.Size(1200, 800);
+            this.Size = new System.Drawing.Size(1134, 668);
             this.Load += new System.EventHandler(this.OrderControl_Load);
             this.mainPanel.ResumeLayout(false);
             this.orderSummaryPanel.ResumeLayout(false);
@@ -662,6 +710,7 @@
             this.orderItemsPanel.PerformLayout();
             this.menuSelectionPanel.ResumeLayout(false);
             this.menuSelectionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -675,15 +724,8 @@
         private System.Windows.Forms.Label lblSelectedTable;
         private SATAUiFramework.SATAPanel orderItemsPanel;
         private System.Windows.Forms.Label lblOrderItemsTitle;
-        private System.Windows.Forms.ListView orderItemsListView;
-        private System.Windows.Forms.ColumnHeader columnItemName;
-        private System.Windows.Forms.ColumnHeader columnQuantity;
-        private System.Windows.Forms.ColumnHeader columnPrice;
-        private System.Windows.Forms.ColumnHeader columnTotal;
         private SATAUiFramework.SATAPanel menuSelectionPanel;
         private System.Windows.Forms.Label lblMenuTitle;
-        private System.Windows.Forms.FlowLayoutPanel menuFlowPanel;
-        private FrameworkTest.SATAButton btnAddMenuItem;
         private System.Windows.Forms.Timer updateTimer;
         private SATAUiFramework.SATAPanel orderSummaryPanel;
         private System.Windows.Forms.Label lblOrderSummaryTitle;
@@ -701,5 +743,18 @@
         private FrameworkTest.SATAButton btnRemoveItem;
         private FrameworkTest.SATAButton btnConfirmOrder;
         private FrameworkTest.SATAButton btnCancelOrder;
+        private System.Windows.Forms.ListView menuListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.DataGridView OrderGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewButtonColumn Editbtn;
     }
 }

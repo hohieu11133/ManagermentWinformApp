@@ -1,53 +1,57 @@
-﻿using SocialMediaDashboardDesign.DataAccess;
+﻿using SocialMediaDashboardDesign.BLL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SocialMediaDashboardDesign
 {
     public partial class MenuControl : UserControl
     {
-        private MenuDAL menuDAL;
+        private MenuBLL menuBLL;
 
         public MenuControl()
         {
             InitializeComponent();
-            menuDAL = new MenuDAL();
+            menuBLL = new MenuBLL();
         }
 
         private void MenuControl_Load(object sender, EventArgs e)
         {
-            LoadCategories();
-            categoryComboBox.SelectedIndex = 0; // mặc định chọn "All"
+            LoadCategories();        // cho filter (categoryComboBox, có "All")
+            LoadCategoriesForEdit(); // cho Add/Edit (comboBox1, không có "All")
+            categoryComboBox.SelectedIndex = 0;
             LoadMenuItems();
         }
 
         private void LoadCategories()
         {
-            DataTable dt = menuDAL.GetCategories(); // load từ DB
+            DataTable dt = menuBLL.GetCategories(); // gọi BLL thay vì DAL
 
-            // Thêm dòng "All" vào DataTable
+            // Thêm dòng "All"
             DataRow allRow = dt.NewRow();
-            allRow["CategoryID"] = 0;   // 0 = đại diện cho "All"
+            allRow["CategoryID"] = 0;
             allRow["Name"] = "All";
-            dt.Rows.InsertAt(allRow, 0);  // thêm vào đầu
+            dt.Rows.InsertAt(allRow, 0);
 
             categoryComboBox.DisplayMember = "Name";
             categoryComboBox.ValueMember = "CategoryID";
             categoryComboBox.DataSource = dt;
         }
 
+        private void LoadCategoriesForEdit()
+        {
+            DataTable dt = menuBLL.GetCategories();
+
+            comboBox1.DisplayMember = "Name";
+            comboBox1.ValueMember = "CategoryID";
+            comboBox1.DataSource = dt;
+        }
 
         private void LoadMenuItems()
         {
             menuItemsListView.Items.Clear();
-            DataTable dt = menuDAL.GetMenuItems();
+            DataTable dt = menuBLL.GetMenuItems();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -55,7 +59,7 @@ namespace SocialMediaDashboardDesign
                 item.SubItems.Add(row["Category"].ToString());
                 item.SubItems.Add(row["Price"].ToString());
                 item.SubItems.Add((Convert.ToBoolean(row["IsAvailable"]) ? "Available" : "Unavailable"));
-                item.Tag = row["MenuItemID"]; // gắn ID để xử lý edit/delete
+                item.Tag = row["MenuItemID"];
                 menuItemsListView.Items.Add(item);
             }
         }
@@ -63,12 +67,14 @@ namespace SocialMediaDashboardDesign
         private void FilterMenuItems()
         {
             string keyword = txtSearch.Text.Trim();
-            int? categoryId = null;
+            if (keyword == "Search items...")
+                keyword = "";
 
-            if (categoryComboBox.SelectedIndex > 0) // 0 = All
+            int? categoryId = null;
+            if (categoryComboBox.SelectedIndex > 0)
                 categoryId = Convert.ToInt32(categoryComboBox.SelectedValue);
 
-            DataTable dt = menuDAL.SearchMenuItems(keyword, categoryId);
+            DataTable dt = menuBLL.SearchMenuItems(keyword, categoryId);
 
             menuItemsListView.Items.Clear();
             foreach (DataRow row in dt.Rows)
@@ -87,7 +93,7 @@ namespace SocialMediaDashboardDesign
             if (txtSearch.Text == "Search items...")
             {
                 txtSearch.Text = "";
-                txtSearch.ForeColor = System.Drawing.Color.Black;
+                txtSearch.ForeColor = Color.Black;
             }
         }
 
@@ -96,13 +102,12 @@ namespace SocialMediaDashboardDesign
             if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 txtSearch.Text = "Search items...";
-                txtSearch.ForeColor = System.Drawing.Color.Gray;
+                txtSearch.ForeColor = Color.Gray;
             }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            // Filter menu items based on search text
             if (txtSearch.Text != "Search items...")
             {
                 FilterMenuItems();
@@ -111,13 +116,14 @@ namespace SocialMediaDashboardDesign
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            // Trigger search
             FilterMenuItems();
         }
-
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            FilterMenuItems();
+        }
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Filter menu items based on selected category
             FilterMenuItems();
         }
 
@@ -126,7 +132,7 @@ namespace SocialMediaDashboardDesign
             if (menuItemsListView.SelectedItems.Count > 0)
             {
                 int id = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
-                DataRow row = menuDAL.GetMenuItemById(id); // DAL viết thêm
+                DataRow row = menuBLL.GetMenuItemById(id);
 
                 if (row != null)
                 {
@@ -139,46 +145,21 @@ namespace SocialMediaDashboardDesign
                     if (!string.IsNullOrEmpty(imageUrl) && System.IO.File.Exists(imageUrl))
                     {
                         pictureBox1.Image = Image.FromFile(imageUrl);
-                        pictureBox1.ImageLocation = imageUrl; // giữ đường dẫn để sau này update
+                        pictureBox1.ImageLocation = imageUrl;
                     }
                     else
                     {
                         pictureBox1.Image = Properties.Resources.holderpic;
-                        pictureBox1.ImageLocation = null; // không có file ảnh
+                        pictureBox1.ImageLocation = null;
                     }
-
                 }
             }
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            string name = txtName.Text.Trim();
-            int categoryId = Convert.ToInt32(comboBox1.SelectedValue);
-            decimal price = decimal.Parse(txtPrice.Text.Trim());
-            bool isAvailable = txtAvailability.Text.Trim().ToLower() == "available";
-            string imageUrl = (pictureBox1.Image != null && pictureBox1.ImageLocation != null)
-                                ? pictureBox1.ImageLocation
-                                : null;
-
-            if (menuDAL.AddMenuItem(name, categoryId, price, isAvailable, imageUrl))
+            try
             {
-                MessageBox.Show("Item added successfully!");
-                LoadMenuItems();
-            }
-            else
-            {
-                MessageBox.Show("Failed to add item!");
-            }
-        }
-
-
-        private void btnEditItem_Click(object sender, EventArgs e)
-        {
-            if (menuItemsListView.SelectedItems.Count > 0)
-            {
-                int id = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
-
                 string name = txtName.Text.Trim();
                 int categoryId = Convert.ToInt32(comboBox1.SelectedValue);
                 decimal price = decimal.Parse(txtPrice.Text.Trim());
@@ -187,21 +168,44 @@ namespace SocialMediaDashboardDesign
                                     ? pictureBox1.ImageLocation
                                     : null;
 
-                if (menuDAL.UpdateMenuItem(id, name, categoryId, price, isAvailable, imageUrl))
+                if (menuBLL.AddMenuItem(name, categoryId, price, isAvailable, imageUrl))
                 {
-                    MessageBox.Show("Item updated successfully!");
+                    MessageBox.Show("Item added successfully!");
                     LoadMenuItems();
                 }
-                else
-                {
-                    MessageBox.Show("Failed to update item!");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnEditItem_Click(object sender, EventArgs e)
         {
-            // Open a form to edit the selected menu item
+            if (menuItemsListView.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    int id = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
+                    string name = txtName.Text.Trim();
+                    int categoryId = Convert.ToInt32(comboBox1.SelectedValue);
+                    decimal price = decimal.Parse(txtPrice.Text.Trim());
+                    bool isAvailable = txtAvailability.Text.Trim().ToLower() == "available";
+                    string imageUrl = (pictureBox1.Image != null && pictureBox1.ImageLocation != null)
+                                        ? pictureBox1.ImageLocation
+                                        : null;
+
+                    if (menuBLL.UpdateMenuItem(id, name, categoryId, price, isAvailable, imageUrl))
+                    {
+                        MessageBox.Show("Item updated successfully!");
+                        LoadMenuItems();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -209,7 +213,7 @@ namespace SocialMediaDashboardDesign
             if (menuItemsListView.SelectedItems.Count > 0)
             {
                 int id = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
-                if (menuDAL.DeleteMenuItem(id))
+                if (menuBLL.DeleteMenuItem(id))
                 {
                     MessageBox.Show("Item deleted successfully!");
                     LoadMenuItems();
@@ -222,7 +226,7 @@ namespace SocialMediaDashboardDesign
             if (menuItemsListView.SelectedItems.Count > 0)
             {
                 int id = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
-                if (menuDAL.ToggleAvailability(id))
+                if (menuBLL.ToggleAvailability(id))
                 {
                     LoadMenuItems();
                 }
@@ -231,24 +235,13 @@ namespace SocialMediaDashboardDesign
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
-            // Refresh menu items periodically
             LoadMenuItems();
         }
 
-       
-        private void headerPanel_Paint(object sender, PaintEventArgs e)
-        {
+        private void headerPanel_Paint(object sender, PaintEventArgs e) { }
 
-        }
+        private void pictureBox1_Click(object sender, EventArgs e) { }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        private void mainPanel_Paint(object sender, PaintEventArgs e) { }
     }
 }

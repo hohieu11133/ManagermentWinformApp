@@ -83,6 +83,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\MenuBLL.cs" />
+    <Compile Include="BLL\OrderBLL.cs" />
+    <Compile Include="BLL\TableBLL.cs" />
     <Compile Include="Control\DashboardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +111,8 @@
       <DependentUpon>LoginControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\MenuDal.cs" />
+    <Compile Include="DataAccess\OrderDAL.cs" />
+    <Compile Include="DataAccess\TableDAL.cs" />
     <Compile Include="DataAccess\UserDAL.cs" />
     <Compile Include="Form\Form1.cs">
       <SubType>Form</SubType>
@@ -216,5 +221,6 @@
   <ItemGroup>
     <None Include="Properties\Resources\holderpic.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
