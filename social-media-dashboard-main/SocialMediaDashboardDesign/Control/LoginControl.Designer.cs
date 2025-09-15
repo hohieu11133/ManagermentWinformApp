@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSignin = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -38,7 +40,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calisto MT", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(150, 18);
+            this.label1.Location = new System.Drawing.Point(70, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(220, 53);
             this.label1.TabIndex = 29;
@@ -46,7 +48,7 @@
             // 
             // btnSignin
             // 
-            this.btnSignin.Location = new System.Drawing.Point(135, 299);
+            this.btnSignin.Location = new System.Drawing.Point(111, 299);
             this.btnSignin.Name = "btnSignin";
             this.btnSignin.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
             this.btnSignin.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
@@ -106,7 +108,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(135, 231);
+            this.txtPassword.Location = new System.Drawing.Point(111, 229);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(302, 38);
@@ -125,17 +127,29 @@
             this.txtPassword.TabIndex = 27;
             this.txtPassword.Text = "Enter your password";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SocialMediaDashboardDesign.Properties.Resources.usericon11;
+            this.pictureBox1.Location = new System.Drawing.Point(179, 74);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(186, 136);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 30;
+            this.pictureBox1.TabStop = false;
+            // 
             // LoginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSignin);
             this.Controls.Add(this.txtPassword);
             this.Name = "LoginControl";
             this.Size = new System.Drawing.Size(688, 420);
             this.Load += new System.EventHandler(this.LoginControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +159,6 @@
         private System.Windows.Forms.Label label1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSignin;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPassword;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

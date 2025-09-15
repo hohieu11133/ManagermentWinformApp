@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SocialMediaDashboardDesign.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SocialMediaDashboardDesign.DataAccess;
 
 namespace SocialMediaDashboardDesign.BLL
 {
@@ -22,7 +23,14 @@ namespace SocialMediaDashboardDesign.BLL
         {
             return orderDAL.GetOrCreateOrder(tableId);
         }
+        // Cập nhật trạng thái bàn (gọi qua OrderDAL)
+        public void UpdateTableStatus(int tableId, string status)
+        {
+            if (string.IsNullOrEmpty(status))
+                throw new Exception("Trạng thái không hợp lệ");
 
+            orderDAL.UpdateTableStatus(tableId, status);
+        }
         // Lấy các món trong order
         public DataTable GetOrderItems(int orderId)
         {

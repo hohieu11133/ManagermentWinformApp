@@ -62,15 +62,23 @@ namespace SocialMediaDashboardDesign
             categoryComboBox.ValueMember = "CategoryID";
             categoryComboBox.DataSource = dt;
         }
-        public void LoadTableInfo(int tableId, string tableName)
+        public void LoadTableInfo(int tableId, string tableName, bool shouldClearGrid = false)
         {
-            this.lblTableNumberValue.Text = "Table " + tableName;  // hiển thị tên bàn
-            this.lblSelectedTable.Text = "Table: " + tableName;    // header
+            this.lblTableNumberValue.Text =  tableName;  // hiển thị tên bàn
+            this.lblSelectedTable.Text =   tableName;    // header
             this.Tag = tableId; // lưu ID bàn để sau này còn thao tác
             DataTable order = orderBLL.GetOrCreateOrder(tableId);
             currentOrderId = Convert.ToInt32(order.Rows[0]["OrderID"]);
-            LoadOrderItems(currentOrderId);   // load các món đã gọi
 
+            // Clear OrderGridView nếu shouldClearGrid là true
+            if (shouldClearGrid)
+            {
+                OrderGridView.Rows.Clear();
+            }
+            else
+            {
+                LoadOrderItems(currentOrderId);
+            }  // load các món đã gọi
         }
         private void LoadOrderItems(int orderId)
         {
@@ -95,10 +103,7 @@ namespace SocialMediaDashboardDesign
 
    
 
-        private void btnAddMenuItem_Click(object sender, EventArgs e)
-        {
-            // Open a form or dialog to add a new menu item
-        }
+  
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
@@ -189,13 +194,17 @@ namespace SocialMediaDashboardDesign
 
         private void btnRemoveItem_Click(object sender, EventArgs e)
         {
-            if (OrderGridView.SelectedRows.Count > 0)
+           
+        }
+
+        private void OrderGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra nếu nhấp vào hàng hợp lệ (không phải header hoặc hàng mới)
+            if (e.RowIndex >= 0 && !OrderGridView.Rows[e.RowIndex].IsNewRow)
             {
-                OrderGridView.Rows.RemoveAt(OrderGridView.SelectedRows[0].Index);
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn món để xóa!");
+                // Chọn toàn bộ hàng
+                OrderGridView.ClearSelection();
+                OrderGridView.Rows[e.RowIndex].Selected = true;
             }
         }
         private void OrderGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -295,32 +304,44 @@ namespace SocialMediaDashboardDesign
 
         private void btnConfirmOrder_Click_1(object sender, EventArgs e)
         {
-
-            int tableId = (int)this.Tag; // lấy từ LoadTableInfo
-            OrderBLL orderBLL = new OrderBLL();
-            var order = orderBLL.GetOrCreateOrder(tableId);
-
-            int orderId = Convert.ToInt32(order.Rows[0]["OrderID"]);
-
-            foreach (DataGridViewRow row in OrderGridView.Rows)
+            try
             {
-                if (row.IsNewRow) continue;
+                int tableId = (int)this.Tag; // Lấy từ LoadTableInfo
 
-                string name = row.Cells["ItemName"].Value.ToString();
-                int qty = Convert.ToInt32(row.Cells["Quantity"].Value);
-                decimal price = Convert.ToDecimal(row.Cells["Price"].Value);
+                // Lấy hoặc tạo order cho bàn
+                var order = orderBLL.GetOrCreateOrder(tableId);
 
-                // lấy menuItemId từ DB theo name
-                var menuItem = menuBLL.SearchMenuItems(name, null).Rows[0];
-                int menuItemId = Convert.ToInt32(menuItem["MenuItemID"]);
+                int orderId = Convert.ToInt32(order.Rows[0]["OrderID"]);
 
-                orderBLL.AddOrderItem(orderId, menuItemId, qty);
+                // Thêm các item từ OrderGridView vào order
+                foreach (DataGridViewRow row in OrderGridView.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string name = row.Cells["ItemName"].Value.ToString();
+                    int qty = Convert.ToInt32(row.Cells["Quantity"].Value);
+                    decimal price = Convert.ToDecimal(row.Cells["Price"].Value);
+
+                    // Lấy menuItemId từ DB theo name
+                    var menuItem = menuBLL.SearchMenuItems(name, null).Rows[0];
+                    int menuItemId = Convert.ToInt32(menuItem["MenuItemID"]);
+
+                    orderBLL.AddOrderItem(orderId, menuItemId, qty);
+                }
+
+               
+                orderBLL.UpdateOrderStatus(orderId, "In Progress");
+
+                // Cập nhật trạng thái bàn thành "Occupied"
+                orderBLL.UpdateTableStatus(tableId, "Occupied");
+
+                MessageBox.Show("Order đã được xác nhận! Bàn đã chuyển sang trạng thái Occupied.");
             }
-
-            orderBLL.UpdateOrderStatus(orderId, "In Progress");
-            MessageBox.Show("Order đã được xác nhận!");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xác nhận order: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void btnCancelOrder_Click_1(object sender, EventArgs e)
         {
             int tableId = (int)this.Tag; // lấy từ LoadTableInfo
@@ -330,6 +351,59 @@ namespace SocialMediaDashboardDesign
             OrderGridView.Rows.Clear();
             orderBLL.UpdateOrderStatus(orderId, "Cancelled");
             MessageBox.Show("Order đã hủy!");
+        }
+
+        private void orderItemsPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnRemoveItem_Click_1(object sender, EventArgs e)
+        {
+            if (OrderGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn món để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow selectedRow = OrderGridView.SelectedRows[0];
+            string itemName = selectedRow.Cells["ItemName"].Value?.ToString();
+
+            if (string.IsNullOrEmpty(itemName))
+            {
+                MessageBox.Show("Không tìm thấy tên món để xóa!");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc muốn xóa món '{itemName}' không?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    if (currentOrderId > 0)
+                    {
+                        var menuItem = menuBLL.GetMenuItemByName(itemName);
+                        if (menuItem != null)
+                        {
+                            int menuItemId = Convert.ToInt32(menuItem["MenuItemID"]);
+                            orderBLL.RemoveOrderItem(currentOrderId, menuItemId);
+                        }
+
+                    }
+
+                    OrderGridView.Rows.Remove(selectedRow);
+                    MessageBox.Show("Món đã được xóa thành công!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa món: " + ex.Message);
+                }
+            }
         }
     }
 }

@@ -15,7 +15,23 @@ namespace SocialMediaDashboardDesign.DataAccess
             if (string.IsNullOrEmpty(connectionString))
                 throw new Exception("Connection string not found in App.config!");
         }
+        public void UpdateTableStatus(int tableId, string status)
+        {
+            if (string.IsNullOrEmpty(status))
+                throw new Exception("Trạng thái không hợp lệ");
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "UPDATE Tables SET Status = @Status WHERE TableID = @TableId";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@TableId", tableId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         // 1. Lấy hoặc tạo order cho table
         public DataTable GetOrCreateOrder(int tableId)
         {

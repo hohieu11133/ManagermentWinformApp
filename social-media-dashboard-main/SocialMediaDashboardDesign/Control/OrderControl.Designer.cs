@@ -45,8 +45,15 @@
             this.btnRefresh = new FrameworkTest.SATAButton();
             this.lblSelectedTable = new System.Windows.Forms.Label();
             this.orderItemsPanel = new SATAUiFramework.SATAPanel();
+            this.OrderGridView = new System.Windows.Forms.DataGridView();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Editbtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblOrderItemsTitle = new System.Windows.Forms.Label();
             this.menuSelectionPanel = new SATAUiFramework.SATAPanel();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.menuListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,20 +62,13 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblMenuTitle = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.OrderGridView = new System.Windows.Forms.DataGridView();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editbtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.mainPanel.SuspendLayout();
             this.orderSummaryPanel.SuspendLayout();
             this.actionPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.orderItemsPanel.SuspendLayout();
-            this.menuSelectionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrderGridView)).BeginInit();
+            this.menuSelectionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -107,7 +107,7 @@
             this.orderSummaryPanel.Controls.Add(this.lblTotalAmountValue);
             this.orderSummaryPanel.Controls.Add(this.lblOrderStatus);
             this.orderSummaryPanel.Controls.Add(this.lblOrderStatusValue);
-            this.orderSummaryPanel.Location = new System.Drawing.Point(834, 96);
+            this.orderSummaryPanel.Location = new System.Drawing.Point(817, 79);
             this.orderSummaryPanel.Name = "orderSummaryPanel";
             this.orderSummaryPanel.Size = new System.Drawing.Size(280, 176);
             this.orderSummaryPanel.TabIndex = 5;
@@ -228,7 +228,7 @@
             this.actionPanel.Controls.Add(this.btnRemoveItem);
             this.actionPanel.Controls.Add(this.btnConfirmOrder);
             this.actionPanel.Controls.Add(this.btnCancelOrder);
-            this.actionPanel.Location = new System.Drawing.Point(834, 278);
+            this.actionPanel.Location = new System.Drawing.Point(817, 261);
             this.actionPanel.Name = "actionPanel";
             this.actionPanel.Size = new System.Drawing.Size(280, 382);
             this.actionPanel.TabIndex = 6;
@@ -349,6 +349,7 @@
             this.btnRemoveItem.TabIndex = 2;
             this.btnRemoveItem.TextAutoCenter = true;
             this.btnRemoveItem.TextOffset = new System.Drawing.Point(0, 0);
+            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click_1);
             // 
             // btnConfirmOrder
             // 
@@ -442,7 +443,7 @@
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.btnRefresh);
             this.headerPanel.Controls.Add(this.lblSelectedTable);
-            this.headerPanel.Location = new System.Drawing.Point(20, 20);
+            this.headerPanel.Location = new System.Drawing.Point(3, 3);
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1094, 70);
             this.headerPanel.TabIndex = 0;
@@ -523,10 +524,70 @@
             this.orderItemsPanel.BorderThickness = 1;
             this.orderItemsPanel.Controls.Add(this.OrderGridView);
             this.orderItemsPanel.Controls.Add(this.lblOrderItemsTitle);
-            this.orderItemsPanel.Location = new System.Drawing.Point(20, 96);
+            this.orderItemsPanel.Location = new System.Drawing.Point(3, 79);
             this.orderItemsPanel.Name = "orderItemsPanel";
             this.orderItemsPanel.Size = new System.Drawing.Size(808, 276);
             this.orderItemsPanel.TabIndex = 2;
+            this.orderItemsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.orderItemsPanel_Paint);
+            // 
+            // OrderGridView
+            // 
+            this.OrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemName,
+            this.Quantity,
+            this.Price,
+            this.Total,
+            this.Editbtn});
+            this.OrderGridView.Location = new System.Drawing.Point(24, 50);
+            this.OrderGridView.Name = "OrderGridView";
+            this.OrderGridView.ReadOnly = true;
+            this.OrderGridView.RowHeadersWidth = 51;
+            this.OrderGridView.RowTemplate.Height = 24;
+            this.OrderGridView.Size = new System.Drawing.Size(772, 213);
+            this.OrderGridView.TabIndex = 1;
+            this.OrderGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderGridView_CellClick);
+            this.OrderGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Name";
+            this.ItemName.MinimumWidth = 6;
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            this.ItemName.Width = 300;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 125;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 125;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 125;
+            // 
+            // Editbtn
+            // 
+            this.Editbtn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Editbtn.HeaderText = "";
+            this.Editbtn.MinimumWidth = 6;
+            this.Editbtn.Name = "Editbtn";
+            this.Editbtn.ReadOnly = true;
             // 
             // lblOrderItemsTitle
             // 
@@ -554,10 +615,20 @@
             this.menuSelectionPanel.Controls.Add(this.categoryComboBox);
             this.menuSelectionPanel.Controls.Add(this.menuListView);
             this.menuSelectionPanel.Controls.Add(this.lblMenuTitle);
-            this.menuSelectionPanel.Location = new System.Drawing.Point(20, 378);
+            this.menuSelectionPanel.Location = new System.Drawing.Point(3, 361);
             this.menuSelectionPanel.Name = "menuSelectionPanel";
             this.menuSelectionPanel.Size = new System.Drawing.Size(808, 287);
             this.menuSelectionPanel.TabIndex = 3;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.txtSearch.Location = new System.Drawing.Point(635, 7);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(161, 28);
+            this.txtSearch.TabIndex = 4;
+            this.txtSearch.Text = "Search items...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // categoryComboBox
             // 
@@ -624,74 +695,6 @@
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.txtSearch.Location = new System.Drawing.Point(635, 7);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(161, 28);
-            this.txtSearch.TabIndex = 4;
-            this.txtSearch.Text = "Search items...";
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // OrderGridView
-            // 
-            this.OrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.OrderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ItemName,
-            this.Quantity,
-            this.Price,
-            this.Total,
-            this.Editbtn});
-            this.OrderGridView.Location = new System.Drawing.Point(24, 50);
-            this.OrderGridView.Name = "OrderGridView";
-            this.OrderGridView.ReadOnly = true;
-            this.OrderGridView.RowHeadersWidth = 51;
-            this.OrderGridView.RowTemplate.Height = 24;
-            this.OrderGridView.Size = new System.Drawing.Size(772, 213);
-            this.OrderGridView.TabIndex = 1;
-            this.OrderGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Name";
-            this.ItemName.MinimumWidth = 6;
-            this.ItemName.Name = "ItemName";
-            this.ItemName.ReadOnly = true;
-            this.ItemName.Width = 300;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            this.Quantity.Width = 125;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Width = 125;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 6;
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 125;
-            // 
-            // Editbtn
-            // 
-            this.Editbtn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Editbtn.HeaderText = "";
-            this.Editbtn.MinimumWidth = 6;
-            this.Editbtn.Name = "Editbtn";
-            this.Editbtn.ReadOnly = true;
-            // 
             // OrderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -708,9 +711,9 @@
             this.headerPanel.PerformLayout();
             this.orderItemsPanel.ResumeLayout(false);
             this.orderItemsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderGridView)).EndInit();
             this.menuSelectionPanel.ResumeLayout(false);
             this.menuSelectionPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderGridView)).EndInit();
             this.ResumeLayout(false);
 
         }

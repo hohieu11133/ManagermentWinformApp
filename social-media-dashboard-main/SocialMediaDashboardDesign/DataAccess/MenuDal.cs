@@ -32,6 +32,21 @@ namespace SocialMediaDashboardDesign.DataAccess
                 return dt;
             }
         }
+        // Trong MenuDAL
+        public DataRow GetMenuItemByName(string name)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM MenuItems WHERE Name = @Name";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@Name", name);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
 
         public DataTable GetMenuItems()
         {

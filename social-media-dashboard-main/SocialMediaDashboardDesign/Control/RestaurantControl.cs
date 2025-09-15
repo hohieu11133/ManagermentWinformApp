@@ -68,7 +68,8 @@ namespace SocialMediaDashboardDesign
                 case "available": return Color.LightGreen;
                 case "occupied": return Color.IndianRed;
                 case "reserved": return Color.Orange;
-                default: return Color.LightGray;
+                case "cleaning": return Color.LightGray;
+                default: return Color.LightGreen;
             }
         }
     
@@ -91,16 +92,15 @@ namespace SocialMediaDashboardDesign
                 return;
             }
 
-            // Tạo OrderControl và gửi thông tin bàn
+            // Tạo OrderControl và gửi thông tin bàn (không clear)
             OrderControl orderCtrl = new OrderControl();
-            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber);
+            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber, false); // Không clear
 
             // Thay thế UserControl hiện tại bằng OrderControl
             this.mainPanel.Controls.Clear();
             this.mainPanel.Controls.Add(orderCtrl);
             orderCtrl.Dock = DockStyle.Fill;
         }
-
 
         private void btnTakeOrder_Click(object sender, EventArgs e)
         {
@@ -110,30 +110,111 @@ namespace SocialMediaDashboardDesign
                 return;
             }
 
+            // Tạo OrderControl và gửi thông tin bàn (clear trước)
             OrderControl orderCtrl = new OrderControl();
-            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber);
+            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber, true); // Clear trước khi load
+
             // Thay thế UserControl hiện tại bằng OrderControl
             this.mainPanel.Controls.Clear();
             this.mainPanel.Controls.Add(orderCtrl);
             orderCtrl.Dock = DockStyle.Fill;
-        
         }
-
 
         private void btnBillPayment_Click(object sender, EventArgs e)
         {
+            if (selectedTableId == -1)
+            {
+                MessageBox.Show("Vui lòng chọn bàn trước!");
+                return;
+            }
 
+            OrderBLL orderBLL = new OrderBLL();
+            var order = orderBLL.GetOrCreateOrder(selectedTableId);
+
+            if (order == null || order.Rows.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy order cho bàn này!");
+                return;
+            }
+
+            int orderId = Convert.ToInt32(order.Rows[0]["OrderID"]);
+
+            using (BillForm billForm = new BillForm(orderId))
+            {
+                if (billForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Sau khi thanh toán thì update bàn sang Available
+                    tableBLL.UpdateTableStatus(selectedTableId, "Cleaning");
+                    LoadTables();
+                }
+            }
         }
+
 
         private void btnCleanTable_Click(object sender, EventArgs e)
         {
+            if (selectedTableId == -1)
+            {
+                MessageBox.Show("Vui lòng chọn bàn!");
+                return;
+            }
 
+            DataRow row = tableBLL.GetTableById(selectedTableId);
+
+            if (row != null)
+            {
+                string currentStatus = row["Status"].ToString();
+
+                if (currentStatus.Equals("Cleaning", StringComparison.OrdinalIgnoreCase))
+                {
+                    tableBLL.UpdateTableStatus(selectedTableId, "Available");
+                    LoadTables();
+                    MessageBox.Show("Bàn đã được làm sạch, chuyển sang Available!");
+                }
+                else
+                {
+                    MessageBox.Show("Chỉ bàn ở trạng thái Cleaning mới chuyển sang Available!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bàn!");
+            }
         }
 
         private void btnReserveTable_Click(object sender, EventArgs e)
         {
+            if (selectedTableId == -1)
+            {
+                MessageBox.Show("Vui lòng chọn bàn!");
+                return;
+            }
 
+            DataRow row = tableBLL.GetTableById(selectedTableId);
+
+            if (row != null)
+            {
+                string currentStatus = row["Status"].ToString();
+
+                if (currentStatus.Equals("Available", StringComparison.OrdinalIgnoreCase))
+                {
+                    tableBLL.UpdateTableStatus(selectedTableId, "Reserved");
+                    LoadTables();
+                    MessageBox.Show("Bàn đã được đặt trước!");
+                }
+                
+                else 
+                {
+                    MessageBox.Show("Chỉ bàn ở trạng thái Available mới được đặt trước!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bàn!");
+            }
         }
+
+
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {

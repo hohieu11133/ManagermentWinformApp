@@ -39,11 +39,15 @@
             this.btnRefresh = new FrameworkTest.SATAButton();
             this.lblDateTime = new System.Windows.Forms.Label();
             this.statusPanel = new SATAUiFramework.SATAPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlAvailable = new System.Windows.Forms.Panel();
             this.lblAvailable = new System.Windows.Forms.Label();
             this.pnlOccupied = new System.Windows.Forms.Panel();
             this.lblOccupied = new System.Windows.Forms.Label();
             this.pnlCleaning = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblCleaning = new System.Windows.Forms.Label();
             this.tablesPanel = new SATAUiFramework.SATAPanel();
             this.lblTablesTitle = new System.Windows.Forms.Label();
@@ -58,17 +62,13 @@
             this.btnReserveTable = new FrameworkTest.SATAButton();
             this.lblRevenueValue = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.statusPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.pnlCleaning.SuspendLayout();
             this.tablesPanel.SuspendLayout();
             this.actionPanel.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -191,6 +191,34 @@
             this.statusPanel.Size = new System.Drawing.Size(280, 120);
             this.statusPanel.TabIndex = 1;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Location = new System.Drawing.Point(140, 76);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(15, 15);
+            this.panel2.TabIndex = 9;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(15, 15);
+            this.panel3.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+            this.label1.Location = new System.Drawing.Point(165, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Reserved";
+            // 
             // pnlAvailable
             // 
             this.pnlAvailable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
@@ -237,6 +265,14 @@
             this.pnlCleaning.Name = "pnlCleaning";
             this.pnlCleaning.Size = new System.Drawing.Size(15, 15);
             this.pnlCleaning.TabIndex = 7;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(15, 15);
+            this.panel1.TabIndex = 8;
             // 
             // lblCleaning
             // 
@@ -545,42 +581,6 @@
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(15, 15);
-            this.panel1.TabIndex = 8;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Location = new System.Drawing.Point(140, 76);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(15, 15);
-            this.panel2.TabIndex = 9;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(15, 15);
-            this.panel3.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.label1.Location = new System.Drawing.Point(165, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Reserved";
-            // 
             // RestaurantControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -594,12 +594,12 @@
             this.headerPanel.PerformLayout();
             this.statusPanel.ResumeLayout(false);
             this.statusPanel.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.pnlCleaning.ResumeLayout(false);
             this.tablesPanel.ResumeLayout(false);
             this.tablesPanel.PerformLayout();
             this.actionPanel.ResumeLayout(false);
             this.actionPanel.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

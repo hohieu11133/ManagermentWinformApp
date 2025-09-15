@@ -24,6 +24,11 @@ namespace SocialMediaDashboardDesign.BLL
         {
             return menuDAL.GetMenuItems();
         }
+        // Trong MenuBLL
+        public DataRow GetMenuItemByName(string name)
+        {
+            return menuDAL.GetMenuItemByName(name);
+        }
 
         // Tìm kiếm
         public DataTable SearchMenuItems(string keyword, int? categoryId)

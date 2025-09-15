@@ -37,6 +37,9 @@
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="ComponentFactory.Krypton.Docking">
       <HintPath>..\..\..\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
@@ -51,6 +54,9 @@
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace">
       <HintPath>..\..\..\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="SATAUiFramework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SATAUiFramework.1.1.2\lib\net40\SATAUiFramework.dll</HintPath>
@@ -83,8 +89,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BillForm.Designer.cs">
+      <DependentUpon>BillForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BLL\MenuBLL.cs" />
     <Compile Include="BLL\OrderBLL.cs" />
+    <Compile Include="BLL\RevenueBLL.cs" />
     <Compile Include="BLL\TableBLL.cs" />
     <Compile Include="Control\DashboardControl.cs">
       <SubType>UserControl</SubType>
@@ -112,6 +125,7 @@
     </Compile>
     <Compile Include="DataAccess\MenuDal.cs" />
     <Compile Include="DataAccess\OrderDAL.cs" />
+    <Compile Include="DataAccess\RevenueDAL.cs" />
     <Compile Include="DataAccess\TableDAL.cs" />
     <Compile Include="DataAccess\UserDAL.cs" />
     <Compile Include="Form\Form1.cs">
@@ -146,6 +160,9 @@
     <Compile Include="Control\RestaurantControl.Designer.cs">
       <DependentUpon>RestaurantControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BillForm.resx">
+      <DependentUpon>BillForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,6 +238,8 @@
   <ItemGroup>
     <None Include="Properties\Resources\holderpic.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Properties\Resources\usericon1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

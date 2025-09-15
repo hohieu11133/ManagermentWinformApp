@@ -51,3 +51,8 @@ C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-mai
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Memory.xml
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.BillForm.resources
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\itextsharp.dll
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\itextsharp.xml

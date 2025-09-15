@@ -1,27 +1,31 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using SocialMediaDashboardDesign.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration; // Để đọc connectionString từ App.config
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Configuration; // Để đọc connectionString từ App.config
-
 namespace SocialMediaDashboardDesign
 {
     public partial class DashboardControl : UserControl
     {
         private string connectionString;
-
+        private RevenueBLL revenueBLL;
         private int selectedYear = DateTime.Now.Year; // Năm mặc định
         private int selectedMonth = DateTime.Now.Month; // Tháng mặc định
 
         public DashboardControl()
         {
             InitializeComponent();
+            revenueBLL = new RevenueBLL();
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ConnectionString;
             if (string.IsNullOrEmpty(connectionString))
             {
@@ -30,6 +34,11 @@ namespace SocialMediaDashboardDesign
             LoadCharts();
             // Gán sự kiện click cho sataBarChart1
             this.sataBarChart1.Click += new System.EventHandler(this.sataBarChart1_Click);
+            decimal yearlyRevenue = revenueBLL.GetYearlyRevenue(selectedYear);
+            decimal monthlyRevenue = revenueBLL.GetMonthlyRevenue(selectedYear, selectedMonth);
+
+            label8.Text = $"Doanh thu năm {selectedYear}: {yearlyRevenue:N0} VNĐ";
+            label9.Text = $"Doanh thu tháng {selectedMonth}/{selectedYear}: {monthlyRevenue:N0} VNĐ";
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
@@ -125,7 +134,45 @@ namespace SocialMediaDashboardDesign
         {
             LoadLineChart();
         }
+        private void sataPanel5_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
+
+
+
+        private void sataBarChart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void YearcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra null để tránh lỗi nếu control không tồn tại
+            if (YearcomboBox != null && YearcomboBox.SelectedItem != null)
+            {
+                selectedYear = int.Parse(YearcomboBox.SelectedItem.ToString());
+                LoadCharts(); // Cập nhật cả hai chart
+            }
+            else
+            {
+                MessageBox.Show("YearcomboBox is not initialized or has no selected item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MonthcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MonthcomboBox != null && MonthcomboBox.SelectedItem != null)
+            {
+                selectedMonth = MonthcomboBox.SelectedIndex + 1; // 1-based index
+                LoadLineChartOnly(); // Chỉ cập nhật sataLineChart1
+            }
+            else
+            {
+                MessageBox.Show("MonthcomboBox is not initialized or has no selected item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void LoadLineChart()
         {
             try
@@ -192,44 +239,111 @@ namespace SocialMediaDashboardDesign
             }
         }
 
-        private void sataPanel5_Paint(object sender, PaintEventArgs e)
+     
+        private void btnExportPdf_Click(object sender, EventArgs e)
         {
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF Files|*.pdf";
+                saveFileDialog.Title = "Xuất báo cáo doanh thu";
+                saveFileDialog.FileName = $"BaoCaoDoanhThu_{selectedYear}_{selectedMonth}.pdf";
 
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    // Font hỗ trợ Unicode (Arial)
+                    BaseFont bf = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    iTextSharp.text.Font titleFont = new iTextSharp.text.Font(bf, 18, iTextSharp.text.Font.BOLD);
+                    iTextSharp.text.Font normalFont = new iTextSharp.text.Font(bf, 12);
+                    iTextSharp.text.Font boldFont = new iTextSharp.text.Font(bf, 12, iTextSharp.text.Font.BOLD);
+
+
+                    Document doc = new Document(PageSize.A4, 25, 25, 30, 30);
+                    PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
+                    doc.Open();
+
+                    // Tiêu đề
+                    Paragraph title = new Paragraph($"BÁO CÁO DOANH THU\n", titleFont);
+                    title.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(title);
+
+                    doc.Add(new Paragraph($"Năm: {selectedYear}, Tháng: {selectedMonth}\n\n", normalFont));
+
+                    // Truy vấn dữ liệu
+                    DataTable revenueData = GetMonthlyReportData(selectedYear, selectedMonth);
+
+                    // Bảng
+                    PdfPTable table = new PdfPTable(3);
+                    table.WidthPercentage = 100;
+                    table.SetWidths(new float[] { 1, 2, 2 });
+
+                    // Header
+                    table.AddCell(new PdfPCell(new Phrase("Ngày", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    table.AddCell(new PdfPCell(new Phrase("Doanh thu (VNĐ)", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    table.AddCell(new PdfPCell(new Phrase("Ghi chú", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                    decimal totalRevenue = 0;
+                    foreach (DataRow row in revenueData.Rows)
+                    {
+                        int day = Convert.ToInt32(row["OrderDay"]);
+                        decimal total = Convert.ToDecimal(row["DailyTotal"]);
+
+                        table.AddCell(new Phrase(day.ToString(), normalFont));
+                        table.AddCell(new Phrase(total.ToString("N0") + " VNĐ", normalFont));
+                        table.AddCell(new Phrase("", normalFont));
+
+                        totalRevenue += total;
+                    }
+
+                    doc.Add(table);
+
+                    // Tổng kết
+                    doc.Add(new Paragraph(
+                        $"\nTổng doanh thu tháng {selectedMonth}/{selectedYear}: {totalRevenue.ToString("N0")} VNĐ",
+                        boldFont
+                    ));
+
+                    doc.Add(new Paragraph($"\nNgày xuất báo cáo: {DateTime.Now:dd/MM/yyyy}", normalFont));
+
+                    doc.Close();
+
+                    MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xuất PDF: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-       
+        // Lấy dữ liệu doanh thu theo tháng
+        private DataTable GetMonthlyReportData(int year, int month)
+{
+    DataTable dt = new DataTable();
 
-        private void sataBarChart1_Click(object sender, EventArgs e)
-        {
-          
-        }
+    using (SqlConnection conn = new SqlConnection(connectionString))
+    {
+        string query = @"
+            SELECT 
+                DAY(OrderTime) AS OrderDay,
+                SUM(TotalAmount) AS DailyTotal
+            FROM [RestaurantManagementDB].[dbo].[Orders]
+            WHERE Status = 'Completed'
+                AND MONTH(OrderTime) = @Month
+                AND YEAR(OrderTime) = @Year
+            GROUP BY DAY(OrderTime)
+            ORDER BY OrderDay;";
 
+        SqlDataAdapter da = new SqlDataAdapter(query, conn);
+        da.SelectCommand.Parameters.AddWithValue("@Month", month);
+        da.SelectCommand.Parameters.AddWithValue("@Year", year);
 
-        private void YearcomboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Kiểm tra null để tránh lỗi nếu control không tồn tại
-            if (YearcomboBox != null && YearcomboBox.SelectedItem != null)
-            {
-                selectedYear = int.Parse(YearcomboBox.SelectedItem.ToString());
-                LoadCharts(); // Cập nhật cả hai chart
-            }
-            else
-            {
-                MessageBox.Show("YearcomboBox is not initialized or has no selected item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void MonthcomboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (MonthcomboBox != null && MonthcomboBox.SelectedItem != null)
-            {
-                selectedMonth = MonthcomboBox.SelectedIndex + 1; // 1-based index
-                LoadLineChartOnly(); // Chỉ cập nhật sataLineChart1
-            }
-            else
-            {
-                MessageBox.Show("MonthcomboBox is not initialized or has no selected item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        da.Fill(dt);
     }
+
+    return dt;
+}
     }
+}
