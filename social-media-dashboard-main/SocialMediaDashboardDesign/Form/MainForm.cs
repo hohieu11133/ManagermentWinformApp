@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocialMediaDashboardDesign.Control;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +11,9 @@ using System.Windows.Forms;
 
 namespace SocialMediaDashboardDesign
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             // Tải DashboardControl làm mặc định
@@ -37,7 +38,7 @@ namespace SocialMediaDashboardDesign
         }
         private void menuOrder_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new OrderControl());
+            LoadUserControl(new OrderManagermentControl());
         }
         private void menuMenu_Click(object sender, EventArgs e)
         {
@@ -84,9 +85,28 @@ namespace SocialMediaDashboardDesign
 
         }
 
-        private void sataButton20_Click(object sender, EventArgs e)
+
+
+        private void logoutbtn_Click(object sender, EventArgs e)
         {
-      
+            // Hiện thông báo xác nhận
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc muốn đăng xuất không?",
+                "Xác nhận đăng xuất",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                // Mở lại form đăng nhập
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+
+                // Đóng form chính
+                this.Close();
+            }
         }
+
     }
 }

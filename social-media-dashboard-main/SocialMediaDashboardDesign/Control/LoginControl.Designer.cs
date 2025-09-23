@@ -31,7 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSignin = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.backbtn = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.backbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,7 +45,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calisto MT", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(70, 18);
+            this.label1.Location = new System.Drawing.Point(225, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(220, 53);
             this.label1.TabIndex = 29;
@@ -48,7 +53,7 @@
             // 
             // btnSignin
             // 
-            this.btnSignin.Location = new System.Drawing.Point(111, 299);
+            this.btnSignin.Location = new System.Drawing.Point(175, 317);
             this.btnSignin.Name = "btnSignin";
             this.btnSignin.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(174)))), ((int)(((byte)(244)))));
             this.btnSignin.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(142)))), ((int)(((byte)(254)))));
@@ -103,12 +108,12 @@
             this.btnSignin.StateTracking.Border.Rounding = 20;
             this.btnSignin.StateTracking.Border.Width = 1;
             this.btnSignin.TabIndex = 28;
-            this.btnSignin.Values.Text = "Sign Up";
+            this.btnSignin.Values.Text = "Sign in";
             this.btnSignin.Click += new System.EventHandler(this.btnSignin_Click);
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(111, 229);
+            this.txtPassword.Location = new System.Drawing.Point(175, 258);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(302, 38);
@@ -127,12 +132,56 @@
             this.txtPassword.TabIndex = 27;
             this.txtPassword.Text = "Enter your password";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(185, 239);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 16);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Enter your password";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(279, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 25);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "KyHieu1";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel1.Location = new System.Drawing.Point(336, 333);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(150, 16);
+            this.linkLabel1.TabIndex = 33;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Forget Your Password ?";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // backbtn
+            // 
+            this.backbtn.Image = global::SocialMediaDashboardDesign.Properties.Resources.backbtn;
+            this.backbtn.Location = new System.Drawing.Point(3, 0);
+            this.backbtn.Name = "backbtn";
+            this.backbtn.Size = new System.Drawing.Size(53, 53);
+            this.backbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.backbtn.TabIndex = 34;
+            this.backbtn.TabStop = false;
+            this.backbtn.Click += new System.EventHandler(this.Backbtn_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SocialMediaDashboardDesign.Properties.Resources.usericon11;
-            this.pictureBox1.Location = new System.Drawing.Point(179, 74);
+            this.pictureBox1.Location = new System.Drawing.Point(212, 101);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(186, 136);
+            this.pictureBox1.Size = new System.Drawing.Size(208, 115);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
@@ -142,6 +191,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.Controls.Add(this.backbtn);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSignin);
@@ -149,6 +202,7 @@
             this.Name = "LoginControl";
             this.Size = new System.Drawing.Size(688, 420);
             this.Load += new System.EventHandler(this.LoginControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.backbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -160,5 +214,9 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSignin;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPassword;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox backbtn;
     }
 }

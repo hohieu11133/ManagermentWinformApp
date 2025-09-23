@@ -70,7 +70,7 @@ namespace SocialMediaDashboardDesign.DataAccess
             SELECT m.MenuItemID, m.Name, m.Price, c.Name AS Category, m.IsAvailable
             FROM MenuItems m
             LEFT JOIN Categories c ON m.CategoryID = c.CategoryID
-            WHERE (@keyword = '' OR m.Name LIKE @keyword)";
+            WHERE m.IsAvailable = 1 AND (@keyword = '' OR m.Name LIKE @keyword)";
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;

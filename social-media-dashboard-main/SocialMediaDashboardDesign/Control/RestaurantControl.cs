@@ -92,16 +92,19 @@ namespace SocialMediaDashboardDesign
                 return;
             }
 
-            // Tạo OrderControl và gửi thông tin bàn (không clear)
             OrderControl orderCtrl = new OrderControl();
-            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber, false); // Không clear
+            //  Sửa ở đây: Bỏ tham số thứ ba (false)
+            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber);
 
-            // Thay thế UserControl hiện tại bằng OrderControl
-            this.mainPanel.Controls.Clear();
-            this.mainPanel.Controls.Add(orderCtrl);
-            orderCtrl.Dock = DockStyle.Fill;
+            // Phần còn lại giữ nguyên
+            Panel parentPanel = this.Parent as Panel; // Tối ưu: Dùng this.Parent để linh hoạt hơn
+            if (parentPanel != null)
+            {
+                parentPanel.Controls.Clear();
+                parentPanel.Controls.Add(orderCtrl);
+                orderCtrl.Dock = DockStyle.Fill;
+            }
         }
-
         private void btnTakeOrder_Click(object sender, EventArgs e)
         {
             if (selectedTableId == -1)
@@ -110,14 +113,18 @@ namespace SocialMediaDashboardDesign
                 return;
             }
 
-            // Tạo OrderControl và gửi thông tin bàn (clear trước)
             OrderControl orderCtrl = new OrderControl();
-            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber, true); // Clear trước khi load
+            //  Sửa
+            orderCtrl.LoadTableInfo(selectedTableId, selectedTableNumber);
 
-            // Thay thế UserControl hiện tại bằng OrderControl
-            this.mainPanel.Controls.Clear();
-            this.mainPanel.Controls.Add(orderCtrl);
-            orderCtrl.Dock = DockStyle.Fill;
+            // Phần còn lại giữ nguyên
+            Panel parentPanel = this.Parent as Panel;
+            if (parentPanel != null)
+            {
+                parentPanel.Controls.Clear();
+                parentPanel.Controls.Add(orderCtrl);
+                orderCtrl.Dock = DockStyle.Fill;
+            }
         }
 
         private void btnBillPayment_Click(object sender, EventArgs e)
@@ -196,21 +203,29 @@ namespace SocialMediaDashboardDesign
             {
                 string currentStatus = row["Status"].ToString();
 
+                // TRƯỜNG HỢP 1: Bàn đang trống -> Chuyển thành Đặt trước
                 if (currentStatus.Equals("Available", StringComparison.OrdinalIgnoreCase))
                 {
                     tableBLL.UpdateTableStatus(selectedTableId, "Reserved");
-                    LoadTables();
-                    MessageBox.Show("Bàn đã được đặt trước!");
+                    LoadTables(); // Tải lại giao diện để cập nhật màu sắc
+                    MessageBox.Show($"Bàn {selectedTableNumber} đã được đặt trước!");
                 }
-                
-                else 
+                // ✅ TRƯỜNG HỢP 2 (MỚI): Bàn đã đặt trước -> Chuyển thành Có khách
+                else if (currentStatus.Equals("Reserved", StringComparison.OrdinalIgnoreCase))
                 {
-                    MessageBox.Show("Chỉ bàn ở trạng thái Available mới được đặt trước!");
+                    tableBLL.UpdateTableStatus(selectedTableId, "Occupied");
+                    LoadTables(); // Tải lại giao diện để cập nhật màu sắc
+                    MessageBox.Show($"Khách đã đến! Bàn {selectedTableNumber} đã chuyển sang trạng thái có khách.");
+                }
+                // TRƯỜNG HỢP 3: Các trạng thái khác (Có khách, Đang dọn)
+                else
+                {
+                    MessageBox.Show($"Không thể thực hiện thao tác này. Bàn đang ở trạng thái '{currentStatus}'.");
                 }
             }
             else
             {
-                MessageBox.Show("Không tìm thấy bàn!");
+                MessageBox.Show("Không tìm thấy thông tin bàn!");
             }
         }
 

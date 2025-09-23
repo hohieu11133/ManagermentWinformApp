@@ -17,7 +17,25 @@ namespace SocialMediaDashboardDesign.BLL
         {
             orderDAL = new OrderDAL();
         }
+        public DataTable GetOrdersByFilter(string searchTerm, string status, DateTime dateFrom, DateTime dateTo)
+        {
+            // Kiểm tra logic nghiệp vụ cơ bản
+            if (dateFrom > dateTo)
+            {
+                throw new Exception("Ngày bắt đầu không thể lớn hơn ngày kết thúc.");
+            }
 
+            // Gọi phương thức từ DAL để lấy dữ liệu
+            return orderDAL.GetOrdersByFilter(searchTerm, status, dateFrom, dateTo);
+        }
+        public DataSet GetBillDetails(int orderId)
+        {
+            return orderDAL.GetBillDetails(orderId);
+        }
+        public DataRow GetOrderSummary(int orderId)
+        {
+            return orderDAL.GetOrderSummary(orderId);
+        }
         // Lấy hoặc tạo order cho bàn
         public DataTable GetOrCreateOrder(int tableId)
         {
@@ -68,6 +86,15 @@ namespace SocialMediaDashboardDesign.BLL
                 throw new Exception("Trạng thái không hợp lệ");
 
             orderDAL.UpdateOrderStatus(orderId, status);
+        }
+        // Dán hàm này vào file OrderBLL.cs của bạn
+
+        public void SyncOrderItems(int orderId, DataTable items)
+        {
+            // Có thể thêm các logic kiểm tra nghiệp vụ ở đây nếu cần
+            // Ví dụ: kiểm tra xem tổng số lượng có hợp lệ không, v.v.
+
+            orderDAL.SyncOrderItems(orderId, items);
         }
     }
 }

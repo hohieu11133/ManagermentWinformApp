@@ -152,7 +152,7 @@
         jRUszCv6N4iODLkIs8sOP4mU7DoXm2znCwoKCkzwD/f0+xYzVmwTAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="sataButton20.HoverImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="logoutbtn.HoverImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAXRJREFUaEPt
         mNFNAzEQRFNCSqKEdEBKoRPoBDoIHSQdJB0MGrSRzMgkcDvrA8lPytecZnfu9uycN5vJZDL58wB4BHCA
@@ -164,7 +164,7 @@
         MpmswgcRP0I6LA9MqgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="sataButton20.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="logoutbtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAZVJREFUaEPt
         mN1twzAMhLOADhqpI3SDZpRukm7SbuA8xMmjs0GyQQuqLiBf/grrKLeAPoBAgBNInixLjlarRqPR+PMc

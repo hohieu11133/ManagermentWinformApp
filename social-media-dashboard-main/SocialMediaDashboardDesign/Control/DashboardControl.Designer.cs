@@ -1,4 +1,6 @@
-﻿namespace SocialMediaDashboardDesign
+﻿using SATAUiFramework.Helpers;
+
+namespace SocialMediaDashboardDesign
 {
     partial class DashboardControl
     {
@@ -129,9 +131,9 @@
             this.sataPanel2.Controls.Add(this.label9);
             this.sataPanel2.Controls.Add(this.pictureBox3);
             this.sataPanel2.Controls.Add(this.label10);
-            this.sataPanel2.Location = new System.Drawing.Point(259, 37);
+            this.sataPanel2.Location = new System.Drawing.Point(371, 37);
             this.sataPanel2.Name = "sataPanel2";
-            this.sataPanel2.Size = new System.Drawing.Size(197, 81);
+            this.sataPanel2.Size = new System.Drawing.Size(295, 81);
             this.sataPanel2.TabIndex = 0;
             // 
             // label9
@@ -211,7 +213,7 @@
             this.sataBarChart1.BarColors = new System.Drawing.Color[0];
             this.sataBarChart1.BarSpacing = 10;
             this.sataBarChart1.BarWidth = 0;
-            this.sataBarChart1.ChartPadding = 40;
+            this.sataBarChart1.ChartPadding=60;
             this.sataBarChart1.CustomXAxis = new string[] {
         "jan",
         "feb",
@@ -240,11 +242,12 @@
         55F};
             this.sataBarChart1.DayColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.sataBarChart1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.sataBarChart1.Location = new System.Drawing.Point(3, 46);
+            this.sataBarChart1.Location = new System.Drawing.Point(11, 46);
             this.sataBarChart1.MaxValue = 75F;
             this.sataBarChart1.Name = "sataBarChart1";
+            this.sataBarChart1.Padding = new System.Windows.Forms.Padding(40, 40, 40, 80);
             this.sataBarChart1.RoundedBars = true;
-            this.sataBarChart1.Size = new System.Drawing.Size(736, 262);
+            this.sataBarChart1.Size = new System.Drawing.Size(737, 262);
             this.sataBarChart1.TabIndex = 2;
             this.sataBarChart1.UsePercent = false;
             this.sataBarChart1.Load += new System.EventHandler(this.sataBarChart1_Load);
@@ -318,7 +321,7 @@
             this.sataLineChart1.AutoMaxValue = false;
             this.sataLineChart1.AxisColor = System.Drawing.Color.Gray;
             this.sataLineChart1.ChartLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(79)))), ((int)(((byte)(165)))));
-            this.sataLineChart1.ChartPadding = 40;
+            this.sataLineChart1.ChartPadding =60;
             this.sataLineChart1.CustomXAxis = new string[0];
             this.sataLineChart1.DataPoints = new float[] {
         105F,
@@ -331,7 +334,7 @@
             this.sataLineChart1.DayColor = System.Drawing.Color.DarkGray;
             this.sataLineChart1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.sataLineChart1.GradientBackground = true;
-            this.sataLineChart1.Location = new System.Drawing.Point(13, 32);
+            this.sataLineChart1.Location = new System.Drawing.Point(13, 29);
             this.sataLineChart1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.sataLineChart1.MaxValue = 150F;
             this.sataLineChart1.Name = "sataLineChart1";
@@ -370,7 +373,7 @@
             this.sataPanel1.Controls.Add(this.label7);
             this.sataPanel1.Location = new System.Drawing.Point(28, 37);
             this.sataPanel1.Name = "sataPanel1";
-            this.sataPanel1.Size = new System.Drawing.Size(199, 81);
+            this.sataPanel1.Size = new System.Drawing.Size(314, 81);
             this.sataPanel1.TabIndex = 0;
             // 
             // label8

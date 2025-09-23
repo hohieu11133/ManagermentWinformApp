@@ -25,9 +25,7 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.headerPanel = new SATAUiFramework.SATAPanel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnRefresh = new FrameworkTest.SATAButton();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new FrameworkTest.SATAButton();
             this.categoryPanel = new SATAUiFramework.SATAPanel();
             this.lblCategoryTitle = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
@@ -40,7 +38,6 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddItem = new FrameworkTest.SATAButton();
             this.btnEditItem = new FrameworkTest.SATAButton();
             this.btnDeleteItem = new FrameworkTest.SATAButton();
@@ -54,12 +51,16 @@
             this.columnAvailability = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.kryptonContextMenu1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenu();
+            this.btnSearch = new FrameworkTest.SATAButton();
+            this.btnRefresh = new FrameworkTest.SATAButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnImage = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.categoryPanel.SuspendLayout();
             this.actionPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuItemsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -109,45 +110,6 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Menu Management";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.ButtonText = "🔄 Refresh";
-            this.btnRefresh.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnRefresh.CheckedForeColor = System.Drawing.Color.White;
-            this.btnRefresh.CheckedImageTint = System.Drawing.Color.White;
-            this.btnRefresh.CheckedOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.CustomDialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnRefresh.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnRefresh.HoverForeColor = System.Drawing.Color.White;
-            this.btnRefresh.HoverImage = null;
-            this.btnRefresh.HoverImageTint = System.Drawing.Color.White;
-            this.btnRefresh.HoverOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.Image = null;
-            this.btnRefresh.ImageAutoCenter = true;
-            this.btnRefresh.ImageExpand = new System.Drawing.Point(3, 3);
-            this.btnRefresh.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnRefresh.ImageTint = System.Drawing.Color.White;
-            this.btnRefresh.IsToggleButton = false;
-            this.btnRefresh.IsToggled = false;
-            this.btnRefresh.Location = new System.Drawing.Point(951, 22);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnRefresh.NormalForeColor = System.Drawing.Color.White;
-            this.btnRefresh.NormalOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.OutlineThickness = 0F;
-            this.btnRefresh.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnRefresh.PressedForeColor = System.Drawing.Color.White;
-            this.btnRefresh.PressedImageTint = System.Drawing.Color.White;
-            this.btnRefresh.PressedOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnRefresh.Size = new System.Drawing.Size(120, 35);
-            this.btnRefresh.TabIndex = 1;
-            this.btnRefresh.TextAutoCenter = true;
-            this.btnRefresh.TextOffset = new System.Drawing.Point(0, 0);
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 10F);
@@ -159,45 +121,6 @@
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
             this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.ButtonText = "🔍 Search";
-            this.btnSearch.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSearch.CheckedForeColor = System.Drawing.Color.White;
-            this.btnSearch.CheckedImageTint = System.Drawing.Color.White;
-            this.btnSearch.CheckedOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.CustomDialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSearch.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSearch.HoverForeColor = System.Drawing.Color.White;
-            this.btnSearch.HoverImage = null;
-            this.btnSearch.HoverImageTint = System.Drawing.Color.White;
-            this.btnSearch.HoverOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.Image = null;
-            this.btnSearch.ImageAutoCenter = true;
-            this.btnSearch.ImageExpand = new System.Drawing.Point(3, 3);
-            this.btnSearch.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnSearch.ImageTint = System.Drawing.Color.White;
-            this.btnSearch.IsToggleButton = false;
-            this.btnSearch.IsToggled = false;
-            this.btnSearch.Location = new System.Drawing.Point(841, 22);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnSearch.NormalForeColor = System.Drawing.Color.White;
-            this.btnSearch.NormalOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.OutlineThickness = 0F;
-            this.btnSearch.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSearch.PressedForeColor = System.Drawing.Color.White;
-            this.btnSearch.PressedImageTint = System.Drawing.Color.White;
-            this.btnSearch.PressedOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnSearch.Size = new System.Drawing.Size(100, 35);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.TextAutoCenter = true;
-            this.btnSearch.TextOffset = new System.Drawing.Point(0, 0);
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // categoryPanel
             // 
@@ -256,6 +179,7 @@
             borderRadius3.TopRight = 15;
             this.actionPanel.BorderRadius = borderRadius3;
             this.actionPanel.BorderThickness = 1;
+            this.actionPanel.Controls.Add(this.btnImage);
             this.actionPanel.Controls.Add(this.comboBox1);
             this.actionPanel.Controls.Add(this.label4);
             this.actionPanel.Controls.Add(this.label3);
@@ -314,7 +238,7 @@
             this.txtAvailability.Name = "txtAvailability";
             this.txtAvailability.Size = new System.Drawing.Size(117, 22);
             this.txtAvailability.TabIndex = 10;
-            this.txtAvailability.Text = "ass";
+            this.txtAvailability.Text = "available";
             // 
             // label2
             // 
@@ -331,7 +255,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(117, 22);
             this.txtPrice.TabIndex = 8;
-            this.txtPrice.Text = "ass";
+            this.txtPrice.Text = " ";
             // 
             // label1
             // 
@@ -348,18 +272,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(117, 22);
             this.txtName.TabIndex = 6;
-            this.txtName.Text = "ass";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SocialMediaDashboardDesign.Properties.Resources.holderpic;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(92, 147);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.txtName.Text = " ";
             // 
             // btnAddItem
             // 
@@ -534,6 +447,7 @@
             this.menuItemsPanel.Name = "menuItemsPanel";
             this.menuItemsPanel.Size = new System.Drawing.Size(836, 560);
             this.menuItemsPanel.TabIndex = 2;
+            this.menuItemsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.menuItemsPanel_Paint);
             // 
             // lblMenuItemsTitle
             // 
@@ -590,6 +504,105 @@
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.ButtonText = "🔍 Search";
+            this.btnSearch.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnSearch.CheckedForeColor = System.Drawing.Color.White;
+            this.btnSearch.CheckedImageTint = System.Drawing.Color.White;
+            this.btnSearch.CheckedOutline = System.Drawing.Color.Transparent;
+            this.btnSearch.CustomDialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSearch.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnSearch.HoverForeColor = System.Drawing.Color.White;
+            this.btnSearch.HoverImage = null;
+            this.btnSearch.HoverImageTint = System.Drawing.Color.White;
+            this.btnSearch.HoverOutline = System.Drawing.Color.Transparent;
+            this.btnSearch.Image = null;
+            this.btnSearch.ImageAutoCenter = true;
+            this.btnSearch.ImageExpand = new System.Drawing.Point(3, 3);
+            this.btnSearch.ImageOffset = new System.Drawing.Point(0, 0);
+            this.btnSearch.ImageTint = System.Drawing.Color.White;
+            this.btnSearch.IsToggleButton = false;
+            this.btnSearch.IsToggled = false;
+            this.btnSearch.Location = new System.Drawing.Point(841, 22);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnSearch.NormalForeColor = System.Drawing.Color.White;
+            this.btnSearch.NormalOutline = System.Drawing.Color.Transparent;
+            this.btnSearch.OutlineThickness = 0F;
+            this.btnSearch.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnSearch.PressedForeColor = System.Drawing.Color.White;
+            this.btnSearch.PressedImageTint = System.Drawing.Color.White;
+            this.btnSearch.PressedOutline = System.Drawing.Color.Transparent;
+            this.btnSearch.Rounding = new System.Windows.Forms.Padding(10);
+            this.btnSearch.Size = new System.Drawing.Size(100, 35);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.TextAutoCenter = true;
+            this.btnSearch.TextOffset = new System.Drawing.Point(0, 0);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.ButtonText = "🔄 Refresh";
+            this.btnRefresh.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnRefresh.CheckedForeColor = System.Drawing.Color.White;
+            this.btnRefresh.CheckedImageTint = System.Drawing.Color.White;
+            this.btnRefresh.CheckedOutline = System.Drawing.Color.Transparent;
+            this.btnRefresh.CustomDialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnRefresh.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnRefresh.HoverForeColor = System.Drawing.Color.White;
+            this.btnRefresh.HoverImage = null;
+            this.btnRefresh.HoverImageTint = System.Drawing.Color.White;
+            this.btnRefresh.HoverOutline = System.Drawing.Color.Transparent;
+            this.btnRefresh.Image = null;
+            this.btnRefresh.ImageAutoCenter = true;
+            this.btnRefresh.ImageExpand = new System.Drawing.Point(3, 3);
+            this.btnRefresh.ImageOffset = new System.Drawing.Point(0, 0);
+            this.btnRefresh.ImageTint = System.Drawing.Color.White;
+            this.btnRefresh.IsToggleButton = false;
+            this.btnRefresh.IsToggled = false;
+            this.btnRefresh.Location = new System.Drawing.Point(951, 22);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnRefresh.NormalForeColor = System.Drawing.Color.White;
+            this.btnRefresh.NormalOutline = System.Drawing.Color.Transparent;
+            this.btnRefresh.OutlineThickness = 0F;
+            this.btnRefresh.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnRefresh.PressedForeColor = System.Drawing.Color.White;
+            this.btnRefresh.PressedImageTint = System.Drawing.Color.White;
+            this.btnRefresh.PressedOutline = System.Drawing.Color.Transparent;
+            this.btnRefresh.Rounding = new System.Windows.Forms.Padding(10);
+            this.btnRefresh.Size = new System.Drawing.Size(120, 35);
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.TextAutoCenter = true;
+            this.btnRefresh.TextOffset = new System.Drawing.Point(0, 0);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SocialMediaDashboardDesign.Properties.Resources.holderpic;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(92, 120);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // btnImage
+            // 
+            this.btnImage.Location = new System.Drawing.Point(7, 144);
+            this.btnImage.Name = "btnImage";
+            this.btnImage.Size = new System.Drawing.Size(72, 46);
+            this.btnImage.TabIndex = 13;
+            this.btnImage.Text = "Chọn\r\nảnh";
+            this.btnImage.UseVisualStyleBackColor = true;
+            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            // 
             // MenuControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -605,9 +618,9 @@
             this.categoryPanel.PerformLayout();
             this.actionPanel.ResumeLayout(false);
             this.actionPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuItemsPanel.ResumeLayout(false);
             this.menuItemsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -617,9 +630,7 @@
         private System.Windows.Forms.Panel mainPanel;
         private SATAUiFramework.SATAPanel headerPanel;
         private System.Windows.Forms.Label lblTitle;
-        private FrameworkTest.SATAButton btnRefresh;
         private System.Windows.Forms.TextBox txtSearch;
-        private FrameworkTest.SATAButton btnSearch;
         private SATAUiFramework.SATAPanel categoryPanel;
         private System.Windows.Forms.Label lblCategoryTitle;
         private System.Windows.Forms.ComboBox categoryComboBox;
@@ -636,7 +647,6 @@
         private FrameworkTest.SATAButton btnDeleteItem;
         private FrameworkTest.SATAButton btnToggleAvailability;
         private System.Windows.Forms.Timer updateTimer;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtName;
         private ComponentFactory.Krypton.Toolkit.KryptonContextMenu kryptonContextMenu1;
         private System.Windows.Forms.Label label2;
@@ -646,5 +656,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtAvailability;
+        private FrameworkTest.SATAButton btnRefresh;
+        private FrameworkTest.SATAButton btnSearch;
+        private System.Windows.Forms.Button btnImage;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

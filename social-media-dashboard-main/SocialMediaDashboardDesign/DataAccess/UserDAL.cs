@@ -21,7 +21,19 @@ namespace SocialMediaDashboardDesign.DataAccess
                 throw new Exception("Connection string not found in App.config!");
             }
         }
-
+        public bool IsEmailExists(string email)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(1) FROM Users WHERE Email = @Email";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    return (int)cmd.ExecuteScalar() > 0;
+                }
+            }
+        }
         public bool IsUserExists(string username)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -35,7 +47,39 @@ namespace SocialMediaDashboardDesign.DataAccess
                 return count > 0;
             }
         }
-
+        public bool UpdatePassword(string email, string newPasswordHash)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                // Sau khi cập nhật mật khẩu, xóa PIN và thời gian hết hạn để chúng không thể được sử dụng lại
+                string query = @"UPDATE Users 
+                         SET PasswordHash = @PasswordHash
+                           
+                         WHERE Email = @Email";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PasswordHash", newPasswordHash);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+      
+        public string GetEmailByUsername(string username)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT Email FROM Users WHERE Username = @Username";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? result.ToString() : null;
+                }
+            }
+        }
         public string GetPasswordHash(string username)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

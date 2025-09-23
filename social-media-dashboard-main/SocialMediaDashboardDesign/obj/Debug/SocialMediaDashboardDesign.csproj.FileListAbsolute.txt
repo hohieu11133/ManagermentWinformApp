@@ -18,7 +18,6 @@ C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-mai
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\SocialMediaDashboardDesign.exe
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\SocialMediaDashboardDesign.pdb
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\SATAUiFramework.dll
-C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.Form1.resources
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.Properties.Resources.resources
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.csproj.GenerateResource.cache
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.csproj.CoreCompileInputs.cache
@@ -56,3 +55,6 @@ C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-mai
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\itextsharp.dll
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\bin\Debug\itextsharp.xml
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.Control.OrderManagermentControl.resources
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.Control.ForgetPasssWordControl.resources
+C:\Users\HOHIEU\Downloads\social-media-dashboard-main\social-media-dashboard-main\SocialMediaDashboardDesign\obj\Debug\SocialMediaDashboardDesign.MainForm.resources

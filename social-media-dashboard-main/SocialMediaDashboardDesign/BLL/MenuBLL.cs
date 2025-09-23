@@ -75,5 +75,6 @@ namespace SocialMediaDashboardDesign.BLL
         {
             return menuDAL.ToggleAvailability(id);
         }
+
     }
 }

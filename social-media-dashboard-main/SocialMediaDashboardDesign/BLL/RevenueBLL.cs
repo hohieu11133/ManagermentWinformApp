@@ -1,5 +1,6 @@
-﻿using System;
-using SocialMediaDashboardDesign.DAL;
+﻿using SocialMediaDashboardDesign.DAL;
+using System;
+using System.Data;
 
 namespace SocialMediaDashboardDesign.BLL
 {
@@ -28,6 +29,15 @@ namespace SocialMediaDashboardDesign.BLL
                 throw new ArgumentException("Tháng/Năm không hợp lệ");
 
             return revenueDAL.GetMonthlyRevenue(year, month);
+        }
+        public DataTable GetRevenueByMonthInYear(int year)
+        {
+            return revenueDAL.GetRevenueByMonthInYear(year);
+        }
+
+        public DataTable GetRevenueByDayInMonth(int year, int month)
+        {
+            return revenueDAL.GetRevenueByDayInMonth(year, month);
         }
     }
 }

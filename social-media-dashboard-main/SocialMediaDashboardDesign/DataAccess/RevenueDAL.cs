@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SocialMediaDashboardDesign.DAL
@@ -14,7 +15,43 @@ namespace SocialMediaDashboardDesign.DAL
             if (string.IsNullOrEmpty(connectionString))
                 throw new Exception("Connection string not found in App.config!");
         }
+        public DataTable GetRevenueByMonthInYear(int year)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT MONTH(OrderTime) AS OrderMonth, SUM(TotalAmount) AS MonthlyTotal
+                FROM Orders
+                WHERE Status = 'Completed' AND YEAR(OrderTime) = @Year
+                GROUP BY MONTH(OrderTime)
+                ORDER BY OrderMonth;";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@Year", year);
+                da.Fill(dt);
+            }
+            return dt;
+        }
 
+        // Hàm mới để lấy doanh thu các ngày trong tháng
+        public DataTable GetRevenueByDayInMonth(int year, int month)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+                SELECT DAY(OrderTime) AS OrderDay, SUM(TotalAmount) AS DailyTotal
+                FROM Orders
+                WHERE Status = 'Completed' AND YEAR(OrderTime) = @Year AND MONTH(OrderTime) = @Month
+                GROUP BY DAY(OrderTime)
+                ORDER BY OrderDay;";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@Year", year);
+                da.SelectCommand.Parameters.AddWithValue("@Month", month);
+                da.Fill(dt);
+            }
+            return dt;
+        }
         // Doanh thu cả năm
         public decimal GetYearlyRevenue(int year)
         {

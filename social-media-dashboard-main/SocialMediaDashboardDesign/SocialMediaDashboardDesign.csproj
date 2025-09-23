@@ -75,6 +75,7 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -89,10 +90,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BillForm.cs">
+    <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="Control\ForgetPasssWordControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\ForgetPasssWordControl.Designer.cs">
+      <DependentUpon>ForgetPasssWordControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\OrderManagermentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\OrderManagermentControl.Designer.cs">
+      <DependentUpon>OrderManagermentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\BillForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BillForm.Designer.cs">
+    <Compile Include="Form\BillForm.Designer.cs">
       <DependentUpon>BillForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BLL\MenuBLL.cs" />
@@ -128,11 +142,11 @@
     <Compile Include="DataAccess\RevenueDAL.cs" />
     <Compile Include="DataAccess\TableDAL.cs" />
     <Compile Include="DataAccess\UserDAL.cs" />
-    <Compile Include="Form\Form1.cs">
+    <Compile Include="Form\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\LoginForm.cs">
       <SubType>Form</SubType>
@@ -160,7 +174,14 @@
     <Compile Include="Control\RestaurantControl.Designer.cs">
       <DependentUpon>RestaurantControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BillForm.resx">
+    <Compile Include="Service\EmailService.cs" />
+    <EmbeddedResource Include="Control\ForgetPasssWordControl.resx">
+      <DependentUpon>ForgetPasssWordControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\OrderManagermentControl.resx">
+      <DependentUpon>OrderManagermentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\BillForm.resx">
       <DependentUpon>BillForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\DashboardControl.resx">
@@ -175,8 +196,8 @@
     <EmbeddedResource Include="Control\RegisterControl.resx">
       <DependentUpon>RegisterControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Form\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -240,6 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Resources\usericon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\backbtn.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

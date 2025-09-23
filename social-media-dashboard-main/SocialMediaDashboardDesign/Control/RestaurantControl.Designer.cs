@@ -372,7 +372,7 @@
             // 
             // btnViewOrder
             // 
-            this.btnViewOrder.ButtonText = "📋 View Order";
+            this.btnViewOrder.ButtonText = " View Order";
             this.btnViewOrder.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnViewOrder.CheckedForeColor = System.Drawing.Color.White;
             this.btnViewOrder.CheckedImageTint = System.Drawing.Color.White;
@@ -411,7 +411,7 @@
             // 
             // btnTakeOrder
             // 
-            this.btnTakeOrder.ButtonText = "➕ Take Order";
+            this.btnTakeOrder.ButtonText = " Take Order";
             this.btnTakeOrder.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnTakeOrder.CheckedForeColor = System.Drawing.Color.White;
             this.btnTakeOrder.CheckedImageTint = System.Drawing.Color.White;
@@ -450,7 +450,7 @@
             // 
             // btnBillPayment
             // 
-            this.btnBillPayment.ButtonText = "💳 Bill & Payment";
+            this.btnBillPayment.ButtonText = " Bill & Payment";
             this.btnBillPayment.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
             this.btnBillPayment.CheckedForeColor = System.Drawing.Color.White;
             this.btnBillPayment.CheckedImageTint = System.Drawing.Color.White;
@@ -489,7 +489,7 @@
             // 
             // btnCleanTable
             // 
-            this.btnCleanTable.ButtonText = "🧹 Clean Table";
+            this.btnCleanTable.ButtonText = " Clean Table";
             this.btnCleanTable.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
             this.btnCleanTable.CheckedForeColor = System.Drawing.Color.White;
             this.btnCleanTable.CheckedImageTint = System.Drawing.Color.White;
@@ -528,7 +528,7 @@
             // 
             // btnReserveTable
             // 
-            this.btnReserveTable.ButtonText = "📅 Reserve Table";
+            this.btnReserveTable.ButtonText = " Reserve Table";
             this.btnReserveTable.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnReserveTable.CheckedForeColor = System.Drawing.Color.White;
             this.btnReserveTable.CheckedImageTint = System.Drawing.Color.White;

@@ -46,6 +46,7 @@
             this.lblSelectedTable = new System.Windows.Forms.Label();
             this.orderItemsPanel = new SATAUiFramework.SATAPanel();
             this.OrderGridView = new System.Windows.Forms.DataGridView();
+            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +61,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblMenuTitle = new System.Windows.Forms.Label();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.mainPanel.SuspendLayout();
@@ -184,7 +186,7 @@
             this.lblTotalAmountValue.AutoSize = true;
             this.lblTotalAmountValue.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
             this.lblTotalAmountValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.lblTotalAmountValue.Location = new System.Drawing.Point(120, 110);
+            this.lblTotalAmountValue.Location = new System.Drawing.Point(144, 110);
             this.lblTotalAmountValue.Name = "lblTotalAmountValue";
             this.lblTotalAmountValue.Size = new System.Drawing.Size(74, 19);
             this.lblTotalAmountValue.TabIndex = 6;
@@ -534,12 +536,13 @@
             // 
             this.OrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MenuItemID,
             this.ItemName,
             this.Quantity,
             this.Price,
             this.Total,
             this.Editbtn});
-            this.OrderGridView.Location = new System.Drawing.Point(24, 50);
+            this.OrderGridView.Location = new System.Drawing.Point(33, 50);
             this.OrderGridView.Name = "OrderGridView";
             this.OrderGridView.ReadOnly = true;
             this.OrderGridView.RowHeadersWidth = 51;
@@ -548,6 +551,16 @@
             this.OrderGridView.TabIndex = 1;
             this.OrderGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderGridView_CellClick);
             this.OrderGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.OrderGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderGridView_CellValueChanged);
+            // 
+            // MenuItemID
+            // 
+            this.MenuItemID.HeaderText = "MenuItemID";
+            this.MenuItemID.MinimumWidth = 6;
+            this.MenuItemID.Name = "MenuItemID";
+            this.MenuItemID.ReadOnly = true;
+            this.MenuItemID.Visible = false;
+            this.MenuItemID.Width = 125;
             // 
             // ItemName
             // 
@@ -645,14 +658,15 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.menuListView.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.menuListView.FullRowSelect = true;
             this.menuListView.GridLines = true;
             this.menuListView.HideSelection = false;
-            this.menuListView.Location = new System.Drawing.Point(24, 41);
+            this.menuListView.Location = new System.Drawing.Point(20, 41);
             this.menuListView.Name = "menuListView";
-            this.menuListView.Size = new System.Drawing.Size(772, 224);
+            this.menuListView.Size = new System.Drawing.Size(770, 224);
             this.menuListView.TabIndex = 2;
             this.menuListView.UseCompatibleStateImageBehavior = false;
             this.menuListView.View = System.Windows.Forms.View.Details;
@@ -661,7 +675,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 365;
+            this.columnHeader1.Width = 355;
             // 
             // columnHeader2
             // 
@@ -677,6 +691,11 @@
             // 
             this.columnHeader4.Text = "Quantity";
             this.columnHeader4.Width = 159;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "MenuItemID";
+            this.columnHeader5.Width = 30;
             // 
             // lblMenuTitle
             // 
@@ -754,6 +773,8 @@
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView OrderGridView;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
