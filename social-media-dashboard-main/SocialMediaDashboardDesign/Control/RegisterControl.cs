@@ -2,20 +2,28 @@
 using System.Linq;
 using System.Net.Mail;
 using System.Windows.Forms;
-using SocialMediaDashboardDesign.DataAccess;
-using BCrypt.Net;
+using SocialMediaDashboardDesign.BLL;
 
 namespace SocialMediaDashboardDesign.Control
 {
+    /// <summary>
+    /// UserControl chịu trách nhiệm cho việc đăng ký tài khoản mới.
+    /// </summary>
     public partial class RegisterControl : UserControl
     {
-        private UserDAL userDAL;
+        private UserBLL userBLL;
+
+        #region Constructors
 
         public RegisterControl()
         {
             InitializeComponent();
-            userDAL = new UserDAL();
+            userBLL = new UserBLL();
         }
+
+        #endregion
+
+        #region Event Handlers
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
@@ -106,18 +114,17 @@ namespace SocialMediaDashboardDesign.Control
                     return;
                 }
 
-                // Check username exists
-                if (userDAL.IsUserExists(username))
+                // Check username exists (qua BLL)
+                if (userBLL.IsUserExists(username))
                 {
                     MessageBox.Show("Username already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Hash password
-                string hashedPassword = HashPassword(password);
+                // Register user (qua BLL, BLL sẽ hash password trước khi gọi DAL)
+                bool isRegistered = userBLL.RegisterUser(username, password, email, phoneNumber);
 
-                // Insert to DB
-                if (userDAL.RegisterUser(username, hashedPassword, email, phoneNumber))
+                if (isRegistered)
                 {
                     MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearFields();
@@ -138,10 +145,23 @@ namespace SocialMediaDashboardDesign.Control
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void panel1_Paint(object sender, PaintEventArgs e)
+
+        private void backbtn_Click(object sender, EventArgs e)
         {
-            // Không cần xử lý gì đặc biệt
+            LoginForm parentForm = this.FindForm() as LoginForm;
+            if (parentForm != null)
+            {
+                LoginControl1 loginctr = new LoginControl1();
+                parentForm.LoadControl(loginctr);
+            }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e) { }
+
+        #endregion
+
+        #region Validation Helpers
+
         private void ValidatePasswordMatch()
         {
             if (txtPassword.Text.Trim() != txtConfirmPass.Text.Trim() && !string.IsNullOrEmpty(txtConfirmPass.Text))
@@ -189,10 +209,9 @@ namespace SocialMediaDashboardDesign.Control
                    phoneNumber.Length <= 11;
         }
 
-        private string HashPassword(string password)
-        {
-            return BCrypt.Net.BCrypt.HashPassword(password);
-        }
+        #endregion
+
+        #region Utility Methods
 
         private void ClearFields()
         {
@@ -203,14 +222,6 @@ namespace SocialMediaDashboardDesign.Control
             txtPhoneNumber.Text = "";
         }
 
-        private void backbtn_Click(object sender, EventArgs e)
-        {
-            LoginForm parentForm = this.FindForm() as LoginForm;
-            if (parentForm != null)
-            {
-                LoginControl1 loginctr = new LoginControl1();
-                parentForm.LoadControl(loginctr);
-            }
-        }
+        #endregion
     }
 }

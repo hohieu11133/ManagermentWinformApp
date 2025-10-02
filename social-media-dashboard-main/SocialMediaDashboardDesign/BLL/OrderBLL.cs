@@ -87,12 +87,10 @@ namespace SocialMediaDashboardDesign.BLL
 
             orderDAL.UpdateOrderStatus(orderId, status);
         }
-        // Dán hàm này vào file OrderBLL.cs của bạn
-
+        
         public void SyncOrderItems(int orderId, DataTable items)
         {
-            // Có thể thêm các logic kiểm tra nghiệp vụ ở đây nếu cần
-            // Ví dụ: kiểm tra xem tổng số lượng có hợp lệ không, v.v.
+         
 
             orderDAL.SyncOrderItems(orderId, items);
         }

@@ -130,7 +130,6 @@
             this.txtPassword.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.StateCommon.Content.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.txtPassword.TabIndex = 27;
-            this.txtPassword.Text = "Enter your password";
             // 
             // label2
             // 

@@ -143,7 +143,7 @@ namespace SocialMediaDashboardDesign
                 // Cập nhật BarChart
                 this.sataBarChart1.CustomXAxis = monthLabels.ToArray();
                 this.sataBarChart1.DataPoints = monthlyRevenueData.ToArray();
-                float maxMonthlyRevenue = monthlyRevenueData.Max();
+                float maxMonthlyRevenue = monthlyRevenueData.Any() ? monthlyRevenueData.Max() : 0;
                 this.sataBarChart1.MaxValue = maxMonthlyRevenue > 0 ? maxMonthlyRevenue * 1.2f : 75f;
                 this.sataBarChart1.AutoMaxValue = false;
                 this.sataBarChart1.Invalidate();
@@ -188,7 +188,7 @@ namespace SocialMediaDashboardDesign
                 // Cập nhật LineChart
                 this.sataLineChart1.CustomXAxis = dayLabels.ToArray();
                 this.sataLineChart1.DataPoints = dailyRevenueData.ToArray();
-                float maxDailyRevenue = dailyRevenueData.Max();
+                float maxDailyRevenue = dailyRevenueData.Any() ? dailyRevenueData.Max() : 0;
                 this.sataLineChart1.MaxValue = maxDailyRevenue > 0 ? maxDailyRevenue * 1.2f : 150f;
                 this.sataLineChart1.Invalidate();
             }
