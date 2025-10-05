@@ -32,6 +32,25 @@ namespace SocialMediaDashboardDesign.DataAccess
                 }
             }
         }
+        /// <summary>
+        /// Cập nhật giá trị TotalCOGS vào bảng Orders sau khi tính toán.
+        /// </summary>
+        /// <param name="orderId">ID của đơn hàng.</param>
+        /// <param name="totalCogs">Tổng Giá vốn hàng bán đã tính.</param>
+        /// <returns>True nếu cập nhật thành công.</returns>
+        public bool UpdateOrderTotalCOGS(int orderId, decimal totalCogs)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Orders SET TotalCOGS = @TotalCOGS WHERE OrderID = @OrderID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@TotalCOGS", totalCogs);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                conn.Open();
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
         // 1. Lấy hoặc tạo order cho table
         public DataTable GetOrCreateOrder(int tableId)
         {
@@ -324,8 +343,7 @@ namespace SocialMediaDashboardDesign.DataAccess
             }
         }
 
-        // 6. Cập nhật trạng thái Order
-        public void UpdateOrderStatus(int orderId, string status)
+        public bool UpdateOrderStatus(int orderId, string status)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -335,7 +353,12 @@ namespace SocialMediaDashboardDesign.DataAccess
                 SqlCommand cmd = new SqlCommand(updateQuery, conn);
                 cmd.Parameters.AddWithValue("@Status", status);
                 cmd.Parameters.AddWithValue("@OrderID", orderId);
-                cmd.ExecuteNonQuery();
+
+                // ExecuteNonQuery trả về số lượng hàng bị ảnh hưởng.
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                // Trả về true nếu có ít nhất một hàng bị cập nhật (thành công)
+                return rowsAffected > 0;
             }
         }
 

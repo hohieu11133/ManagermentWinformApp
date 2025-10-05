@@ -214,58 +214,146 @@ namespace SocialMediaDashboardDesign
             }
         }
 
+        //private void btnAddItem_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string name = txtName.Text.Trim();
+
+        //        // 1. Kiểm tra xem tên món có được nhập hay không
+        //        if (string.IsNullOrEmpty(name))
+        //        {
+        //            MessageBox.Show("Vui lòng nhập tên món ăn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            txtName.Focus();
+        //            return;
+        //        }
+
+        //        // 2. Kiểm tra xem tên món đã tồn tại trong CSDL chưa
+        //        // Giả định rằng bạn đã có phương thức MenuItemExists trong lớp MenuBLL
+        //        if (menuBLL.MenuItemExists(name))
+        //        {
+        //            MessageBox.Show($"Món ăn có tên '{name}' đã tồn tại trong menu.", "Trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            return; // Dừng lại nếu món đã tồn tại
+        //        }
+
+        //        // 3. Nếu hợp lệ, tiếp tục thêm món
+        //        int categoryId = Convert.ToInt32(comboBox1.SelectedValue);
+        //        decimal price = decimal.Parse(txtPrice.Text.Trim());
+        //        bool isAvailable = txtAvailability.Text.Trim().Equals("Available", StringComparison.OrdinalIgnoreCase);
+        //        string imageUrl = pictureBox1.ImageLocation;
+
+        //        if (menuBLL.AddMenuItem(name, categoryId, price, isAvailable, imageUrl))
+        //        {
+        //            MessageBox.Show("Thêm món thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            LoadMenuItems(); // Tải lại danh sách để hiển thị món mới
+        //        }
+        //    }
+        //    catch (FormatException)
+        //    {
+        //        MessageBox.Show("Giá tiền không hợp lệ. Vui lòng nhập một số.", "Lỗi định dạng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Lỗi khi thêm món: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             try
             {
-                string name = txtName.Text.Trim();
-                int categoryId = Convert.ToInt32(comboBox1.SelectedValue);
-                decimal price = decimal.Parse(txtPrice.Text.Trim());
-                bool isAvailable = txtAvailability.Text.Trim().Equals("Available", StringComparison.OrdinalIgnoreCase);
-                string imageUrl = pictureBox1.ImageLocation;
+                // 1. Tạo một instance mới của form thêm món ăn kèm công thức
+                AddMenuItemWithRecipeForm addRecipeForm = new AddMenuItemWithRecipeForm();
 
-                if (menuBLL.AddMenuItem(name, categoryId, price, isAvailable, imageUrl))
+                // 2. Hiển thị form dưới dạng hộp thoại (modal)
+                // Khi form đóng, nó sẽ trả về DialogResult.OK nếu người dùng nhấn nút Lưu
+                DialogResult result = addRecipeForm.ShowDialog();
+
+                // 3. Xử lý kết quả trả về từ form
+                if (result == DialogResult.OK)
                 {
-                    MessageBox.Show("Thêm món thành công!");
+   
+
                     LoadMenuItems();
+
+                    MessageBox.Show("Thêm món ăn và công thức thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                // Nếu result là DialogResult.Cancel, người dùng đã hủy và không làm gì cả.
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thêm món: " + ex.Message);
+                // Bắt lỗi nếu có vấn đề khi khởi tạo hoặc hiển thị form
+                MessageBox.Show("Lỗi khi mở form thêm món: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        //private void btnEditItem_Click(object sender, EventArgs e)
+        //{
+        //    if (menuItemsListView.SelectedItems.Count > 0)
+        //    {
+        //        try
+        //        {
+        //            int id = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
+        //            string name = txtName.Text.Trim();
+        //            int categoryId = Convert.ToInt32(comboBox1.SelectedValue);
+        //            decimal price = decimal.Parse(txtPrice.Text.Trim());
+        //            bool isAvailable = txtAvailability.Text.Trim().Equals("Available", StringComparison.OrdinalIgnoreCase);
+        //            string imageUrl = pictureBox1.ImageLocation;
 
+        //            if (menuBLL.UpdateMenuItem(id, name, categoryId, price, isAvailable, imageUrl))
+        //            {
+        //                MessageBox.Show("Cập nhật món thành công!");
+        //                LoadMenuItems();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn một món để sửa.");
+        //    }
+        //}
         private void btnEditItem_Click(object sender, EventArgs e)
         {
+            // 1. Kiểm tra xem có món ăn nào được chọn không
             if (menuItemsListView.SelectedItems.Count > 0)
             {
                 try
                 {
-                    int id = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
-                    string name = txtName.Text.Trim();
-                    int categoryId = Convert.ToInt32(comboBox1.SelectedValue);
-                    decimal price = decimal.Parse(txtPrice.Text.Trim());
-                    bool isAvailable = txtAvailability.Text.Trim().Equals("Available", StringComparison.OrdinalIgnoreCase);
-                    string imageUrl = pictureBox1.ImageLocation;
+                    // 2. Lấy ID của món ăn đang được chọn từ Tag của ListViewItem
+                    int menuItemId = Convert.ToInt32(menuItemsListView.SelectedItems[0].Tag);
 
-                    if (menuBLL.UpdateMenuItem(id, name, categoryId, price, isAvailable, imageUrl))
+                    // 3. Tạo và mở form chỉnh sửa
+                    // Cần đảm bảo rằng AddMenuItemWithRecipeForm có constructor chấp nhận MenuItemID.
+                    AddMenuItemWithRecipeForm editForm = new AddMenuItemWithRecipeForm(menuItemId);
+
+                    // 4. Hiển thị form dưới dạng hộp thoại
+                    DialogResult result = editForm.ShowDialog();
+
+                    // 5. Xử lý kết quả trả về từ form
+                    if (result == DialogResult.OK)
                     {
-                        MessageBox.Show("Cập nhật món thành công!");
-                        LoadMenuItems();
+                        // Nếu thao tác lưu trong form popup thành công
+                        MessageBox.Show("Cập nhật món ăn và công thức thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadMenuItems(); // Tải lại danh sách món ăn trên control hiện tại
                     }
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Lỗi định dạng ID. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
+                    MessageBox.Show("Lỗi khi mở form cập nhật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một món để sửa.");
+                MessageBox.Show("Vui lòng chọn một món để sửa.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
             if (menuItemsListView.SelectedItems.Count > 0)

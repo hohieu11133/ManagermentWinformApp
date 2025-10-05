@@ -97,11 +97,31 @@ namespace SocialMediaDashboardDesign
 
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            // Cập nhật order sang Completed
-            orderBLL.UpdateOrderStatus(orderId, "Completed");
-            MessageBox.Show("Thanh toán thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            // Lấy ID đơn hàng cần xử lý
+            int currentOrderId = orderId; // Giả sử orderId đã được lưu trữ trong control/form
+
+            try
+            {
+                // GỌI HÀM HOÀN THÀNH CHÍNH (chứa logic cập nhật trạng thái và trừ kho)
+                bool success = orderBLL.CompleteOrder(currentOrderId);
+
+                if (success)
+                {
+                    MessageBox.Show("Thanh toán thành công và kho đã được cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    // Xử lý khi Order không tồn tại hoặc cập nhật thất bại (nhưng logic trừ kho có thể báo lỗi riêng)
+                    MessageBox.Show("Thanh toán thất bại. Vui lòng kiểm tra lại đơn hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi nếu có lỗi kết nối DB, lỗi logic nghiệp vụ trong BLL/DAL.
+                MessageBox.Show($"Đã xảy ra lỗi hệ thống khi hoàn tất thanh toán: {ex.Message}", "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void billListView_SelectedIndexChanged(object sender, EventArgs e)

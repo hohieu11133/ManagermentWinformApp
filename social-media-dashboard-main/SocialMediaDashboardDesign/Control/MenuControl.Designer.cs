@@ -19,15 +19,13 @@
         {
             this.components = new System.ComponentModel.Container();
             SATAUiFramework.BorderRadius borderRadius1 = new SATAUiFramework.BorderRadius();
-            SATAUiFramework.BorderRadius borderRadius2 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius3 = new SATAUiFramework.BorderRadius();
             SATAUiFramework.BorderRadius borderRadius4 = new SATAUiFramework.BorderRadius();
+            SATAUiFramework.BorderRadius borderRadius2 = new SATAUiFramework.BorderRadius();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.headerPanel = new SATAUiFramework.SATAPanel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.categoryPanel = new SATAUiFramework.SATAPanel();
-            this.lblCategoryTitle = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.actionPanel = new SATAUiFramework.SATAPanel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -51,15 +49,14 @@
             this.columnAvailability = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.kryptonContextMenu1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenu();
-            this.btnSearch = new FrameworkTest.SATAButton();
-            this.btnRefresh = new FrameworkTest.SATAButton();
+            this.categoryPanel = new SATAUiFramework.SATAPanel();
+            this.lblCategoryTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnImage = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
-            this.categoryPanel.SuspendLayout();
             this.actionPanel.SuspendLayout();
             this.menuItemsPanel.SuspendLayout();
+            this.categoryPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,9 +87,7 @@
             this.headerPanel.BorderRadius = borderRadius1;
             this.headerPanel.BorderThickness = 1;
             this.headerPanel.Controls.Add(this.lblTitle);
-            this.headerPanel.Controls.Add(this.btnRefresh);
             this.headerPanel.Controls.Add(this.txtSearch);
-            this.headerPanel.Controls.Add(this.btnSearch);
             this.headerPanel.Location = new System.Drawing.Point(20, 20);
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1083, 70);
@@ -122,35 +117,6 @@
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
             this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
-            // categoryPanel
-            // 
-            this.categoryPanel.BackColor = System.Drawing.Color.White;
-            this.categoryPanel.BackColor2 = System.Drawing.Color.White;
-            this.categoryPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            borderRadius2.BottomLeft = 15;
-            borderRadius2.BottomRight = 15;
-            borderRadius2.TopLeft = 15;
-            borderRadius2.TopRight = 15;
-            this.categoryPanel.BorderRadius = borderRadius2;
-            this.categoryPanel.BorderThickness = 1;
-            this.categoryPanel.Controls.Add(this.lblCategoryTitle);
-            this.categoryPanel.Controls.Add(this.categoryComboBox);
-            this.categoryPanel.Location = new System.Drawing.Point(865, 97);
-            this.categoryPanel.Name = "categoryPanel";
-            this.categoryPanel.Size = new System.Drawing.Size(238, 104);
-            this.categoryPanel.TabIndex = 1;
-            // 
-            // lblCategoryTitle
-            // 
-            this.lblCategoryTitle.AutoSize = true;
-            this.lblCategoryTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCategoryTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
-            this.lblCategoryTitle.Location = new System.Drawing.Point(20, 15);
-            this.lblCategoryTitle.Name = "lblCategoryTitle";
-            this.lblCategoryTitle.Size = new System.Drawing.Size(117, 23);
-            this.lblCategoryTitle.TabIndex = 0;
-            this.lblCategoryTitle.Text = "Categories";
-            // 
             // categoryComboBox
             // 
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -179,7 +145,6 @@
             borderRadius3.TopRight = 15;
             this.actionPanel.BorderRadius = borderRadius3;
             this.actionPanel.BorderThickness = 1;
-            this.actionPanel.Controls.Add(this.btnImage);
             this.actionPanel.Controls.Add(this.comboBox1);
             this.actionPanel.Controls.Add(this.label4);
             this.actionPanel.Controls.Add(this.label3);
@@ -276,7 +241,7 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.ButtonText = "➕ Add Item";
+            this.btnAddItem.ButtonText = " Add Item";
             this.btnAddItem.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnAddItem.CheckedForeColor = System.Drawing.Color.White;
             this.btnAddItem.CheckedImageTint = System.Drawing.Color.White;
@@ -315,7 +280,7 @@
             // 
             // btnEditItem
             // 
-            this.btnEditItem.ButtonText = "✏️ Edit Item";
+            this.btnEditItem.ButtonText = "Edit Item";
             this.btnEditItem.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnEditItem.CheckedForeColor = System.Drawing.Color.White;
             this.btnEditItem.CheckedImageTint = System.Drawing.Color.White;
@@ -354,7 +319,7 @@
             // 
             // btnDeleteItem
             // 
-            this.btnDeleteItem.ButtonText = "🗑️ Delete Item";
+            this.btnDeleteItem.ButtonText = "Delete Item";
             this.btnDeleteItem.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnDeleteItem.CheckedForeColor = System.Drawing.Color.White;
             this.btnDeleteItem.CheckedImageTint = System.Drawing.Color.White;
@@ -393,7 +358,7 @@
             // 
             // btnToggleAvailability
             // 
-            this.btnToggleAvailability.ButtonText = "🔄 Toggle Availability";
+            this.btnToggleAvailability.ButtonText = "Toggle Availability";
             this.btnToggleAvailability.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnToggleAvailability.CheckedForeColor = System.Drawing.Color.White;
             this.btnToggleAvailability.CheckedImageTint = System.Drawing.Color.White;
@@ -504,83 +469,34 @@
             this.updateTimer.Interval = 60000;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
-            // btnSearch
+            // categoryPanel
             // 
-            this.btnSearch.ButtonText = "🔍 Search";
-            this.btnSearch.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSearch.CheckedForeColor = System.Drawing.Color.White;
-            this.btnSearch.CheckedImageTint = System.Drawing.Color.White;
-            this.btnSearch.CheckedOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.CustomDialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSearch.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSearch.HoverForeColor = System.Drawing.Color.White;
-            this.btnSearch.HoverImage = null;
-            this.btnSearch.HoverImageTint = System.Drawing.Color.White;
-            this.btnSearch.HoverOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.Image = null;
-            this.btnSearch.ImageAutoCenter = true;
-            this.btnSearch.ImageExpand = new System.Drawing.Point(3, 3);
-            this.btnSearch.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnSearch.ImageTint = System.Drawing.Color.White;
-            this.btnSearch.IsToggleButton = false;
-            this.btnSearch.IsToggled = false;
-            this.btnSearch.Location = new System.Drawing.Point(841, 22);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnSearch.NormalForeColor = System.Drawing.Color.White;
-            this.btnSearch.NormalOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.OutlineThickness = 0F;
-            this.btnSearch.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSearch.PressedForeColor = System.Drawing.Color.White;
-            this.btnSearch.PressedImageTint = System.Drawing.Color.White;
-            this.btnSearch.PressedOutline = System.Drawing.Color.Transparent;
-            this.btnSearch.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnSearch.Size = new System.Drawing.Size(100, 35);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.TextAutoCenter = true;
-            this.btnSearch.TextOffset = new System.Drawing.Point(0, 0);
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.categoryPanel.BackColor = System.Drawing.Color.White;
+            this.categoryPanel.BackColor2 = System.Drawing.Color.White;
+            this.categoryPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
+            borderRadius2.BottomLeft = 15;
+            borderRadius2.BottomRight = 15;
+            borderRadius2.TopLeft = 15;
+            borderRadius2.TopRight = 15;
+            this.categoryPanel.BorderRadius = borderRadius2;
+            this.categoryPanel.BorderThickness = 1;
+            this.categoryPanel.Controls.Add(this.lblCategoryTitle);
+            this.categoryPanel.Controls.Add(this.categoryComboBox);
+            this.categoryPanel.Location = new System.Drawing.Point(865, 97);
+            this.categoryPanel.Name = "categoryPanel";
+            this.categoryPanel.Size = new System.Drawing.Size(238, 104);
+            this.categoryPanel.TabIndex = 1;
             // 
-            // btnRefresh
+            // lblCategoryTitle
             // 
-            this.btnRefresh.ButtonText = "🔄 Refresh";
-            this.btnRefresh.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnRefresh.CheckedForeColor = System.Drawing.Color.White;
-            this.btnRefresh.CheckedImageTint = System.Drawing.Color.White;
-            this.btnRefresh.CheckedOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.CustomDialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnRefresh.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnRefresh.HoverForeColor = System.Drawing.Color.White;
-            this.btnRefresh.HoverImage = null;
-            this.btnRefresh.HoverImageTint = System.Drawing.Color.White;
-            this.btnRefresh.HoverOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.Image = null;
-            this.btnRefresh.ImageAutoCenter = true;
-            this.btnRefresh.ImageExpand = new System.Drawing.Point(3, 3);
-            this.btnRefresh.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnRefresh.ImageTint = System.Drawing.Color.White;
-            this.btnRefresh.IsToggleButton = false;
-            this.btnRefresh.IsToggled = false;
-            this.btnRefresh.Location = new System.Drawing.Point(951, 22);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnRefresh.NormalForeColor = System.Drawing.Color.White;
-            this.btnRefresh.NormalOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.OutlineThickness = 0F;
-            this.btnRefresh.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnRefresh.PressedForeColor = System.Drawing.Color.White;
-            this.btnRefresh.PressedImageTint = System.Drawing.Color.White;
-            this.btnRefresh.PressedOutline = System.Drawing.Color.Transparent;
-            this.btnRefresh.Rounding = new System.Windows.Forms.Padding(10);
-            this.btnRefresh.Size = new System.Drawing.Size(120, 35);
-            this.btnRefresh.TabIndex = 1;
-            this.btnRefresh.TextAutoCenter = true;
-            this.btnRefresh.TextOffset = new System.Drawing.Point(0, 0);
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.lblCategoryTitle.AutoSize = true;
+            this.lblCategoryTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lblCategoryTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.lblCategoryTitle.Location = new System.Drawing.Point(20, 15);
+            this.lblCategoryTitle.Name = "lblCategoryTitle";
+            this.lblCategoryTitle.Size = new System.Drawing.Size(117, 23);
+            this.lblCategoryTitle.TabIndex = 0;
+            this.lblCategoryTitle.Text = "Categories";
             // 
             // pictureBox1
             // 
@@ -593,16 +509,6 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // btnImage
-            // 
-            this.btnImage.Location = new System.Drawing.Point(7, 144);
-            this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(72, 46);
-            this.btnImage.TabIndex = 13;
-            this.btnImage.Text = "Chọn\r\nảnh";
-            this.btnImage.UseVisualStyleBackColor = true;
-            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
-            // 
             // MenuControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -614,12 +520,12 @@
             this.mainPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
-            this.categoryPanel.ResumeLayout(false);
-            this.categoryPanel.PerformLayout();
             this.actionPanel.ResumeLayout(false);
             this.actionPanel.PerformLayout();
             this.menuItemsPanel.ResumeLayout(false);
             this.menuItemsPanel.PerformLayout();
+            this.categoryPanel.ResumeLayout(false);
+            this.categoryPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -631,8 +537,6 @@
         private SATAUiFramework.SATAPanel headerPanel;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtSearch;
-        private SATAUiFramework.SATAPanel categoryPanel;
-        private System.Windows.Forms.Label lblCategoryTitle;
         private System.Windows.Forms.ComboBox categoryComboBox;
         private SATAUiFramework.SATAPanel menuItemsPanel;
         private System.Windows.Forms.Label lblMenuItemsTitle;
@@ -656,9 +560,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtAvailability;
-        private FrameworkTest.SATAButton btnRefresh;
-        private FrameworkTest.SATAButton btnSearch;
-        private System.Windows.Forms.Button btnImage;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private SATAUiFramework.SATAPanel categoryPanel;
+        private System.Windows.Forms.Label lblCategoryTitle;
     }
 }

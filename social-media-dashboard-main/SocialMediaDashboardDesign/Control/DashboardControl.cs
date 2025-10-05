@@ -4,12 +4,13 @@ using SocialMediaDashboardDesign.BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration; // Đọc connectionString từ App.config
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,12 +45,7 @@ namespace SocialMediaDashboardDesign
             // Gán sự kiện click cho biểu đồ Bar
             this.sataBarChart1.Click += new System.EventHandler(this.sataBarChart1_Click);
 
-            // Hiển thị tổng doanh thu năm/tháng
-            decimal yearlyRevenue = revenueBLL.GetYearlyRevenue(selectedYear);
-            decimal monthlyRevenue = revenueBLL.GetMonthlyRevenue(selectedYear, selectedMonth);
-
-            label8.Text = $"{selectedYear}: {yearlyRevenue:N0}  $";
-            label9.Text = $" {selectedMonth}/{selectedYear}: {monthlyRevenue:N0} $";
+            
         }
         private void panel4_Paint(object sender, PaintEventArgs e) { }
         private void sataPanel5_Paint(object sender, PaintEventArgs e) { }
@@ -73,12 +69,16 @@ namespace SocialMediaDashboardDesign
         {
             LoadBarChart();
             LoadLineChart();
+
+            UpdateRevenueAndProfitLabels();
         }
 
         // Chỉ load LineChart (khi đổi tháng)
         private void LoadLineChartOnly()
         {
             LoadLineChart();
+
+            UpdateRevenueAndProfitLabels();
         }
 
         // ====== Xử lý khi chọn Năm ======
@@ -198,22 +198,65 @@ namespace SocialMediaDashboardDesign
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        // ====== Hàm cập nhật Doanh thu và Lợi nhuận ======
+        private void UpdateRevenueAndProfitLabels()
+        {
+            try
+            {
+                // 1. Lấy dữ liệu
+                decimal yearlyRevenue = revenueBLL.GetYearlyRevenue(selectedYear);
+                decimal monthlyRevenue = revenueBLL.GetMonthlyRevenue(selectedYear, selectedMonth);
+                decimal yearlyProfit = revenueBLL.GetYearlyProfit(selectedYear);
+                decimal monthlyProfit = revenueBLL.GetMonthlyProfit(selectedYear, selectedMonth);
 
-        // ====== Xuất báo cáo PDF ======
+                // 2. Cập nhật Nhãn Doanh thu
+                // Giả sử label8 hiển thị Doanh thu năm, label9 hiển thị Doanh thu tháng
+
+                // Doanh thu Năm (label8)
+                label8.Text = $"{selectedYear}: {yearlyRevenue:N0} $";
+
+                // Doanh thu Tháng (label9)
+                label9.Text = $" {selectedMonth}/{selectedYear}: {monthlyRevenue:N0} $";
+
+                // 3. Cập nhật Nhãn Lợi nhuận (Giả sử các label mới của bạn)
+                // lblyearprofit: Dùng để hiển thị văn bản "Lợi nhuận gộp năm X"
+                // lblnumberyearprofit: Dùng để hiển thị giá trị số
+
+                // Lợi nhuận Năm
+                lblyearprofit.Text = $"Lợi nhuận gộp năm {selectedYear}:";
+                lblnumberyearprofit.Text = $"{yearlyProfit:N0} $";
+
+                // Lợi nhuận Tháng
+                lblmonthprofit.Text = $"Lợi nhuận gộp tháng {selectedMonth}/{selectedYear}:";
+                lblnumbermonthprofit.Text = $"{monthlyProfit:N0} $";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi cập nhật số liệu: {ex.Message}", "Lỗi",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        // ====== Xuất báo cáo PDF (Đã sửa đổi) ======
         private void btnExportPdf_Click(object sender, EventArgs e)
         {
             try
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "PDF Files|*.pdf";
-                saveFileDialog.Title = "Export Revenue Report";
-                saveFileDialog.FileName = $"RevenueReport_{selectedYear}_{selectedMonth}.pdf";
+                saveFileDialog.Title = "Export Profit Report"; // Đổi tên báo cáo
+                saveFileDialog.FileName = $"ProfitReport_{selectedYear}_{selectedMonth}.pdf";
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string filePath = saveFileDialog.FileName;
 
-                    // Font mặc định của iTextSharp (chưa hỗ trợ tiếng Việt có dấu)
+                    // Lấy TỔNG SỐ LIỆU THÁNG từ BLL
+                    // LƯU Ý: Bạn cần đảm bảo đã có hàm GetMonthlyCOGS(year, month) trong RevenueDAL
+                    decimal totalRevenue = revenueBLL.GetMonthlyRevenue(selectedYear, selectedMonth);
+                    decimal totalCOGS = revenueBLL.GetMonthlyCOGS(selectedYear, selectedMonth); // Lấy COGS
+                    decimal totalProfit = totalRevenue - totalCOGS; // Tính Lợi nhuận gộp
+
+                    // Font mặc định của iTextSharp (giữ nguyên, lưu ý: không hỗ trợ tiếng Việt có dấu)
                     iTextSharp.text.Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18);
                     iTextSharp.text.Font normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
                     iTextSharp.text.Font boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
@@ -223,14 +266,18 @@ namespace SocialMediaDashboardDesign
                     doc.Open();
 
                     // Tiêu đề
-                    Paragraph title = new Paragraph("BAO CAO DOANH THU", titleFont)
+                    Paragraph title = new Paragraph("BAO CAO DOANH THU & LOI NHUAN GÔP", titleFont)
                     { Alignment = Element.ALIGN_CENTER };
                     doc.Add(title);
                     doc.Add(new Paragraph($"Thang: {selectedMonth}/{selectedYear}\n\n", normalFont)
                     { Alignment = Element.ALIGN_CENTER });
 
-                    // Lấy dữ liệu doanh thu
+                    // Lấy dữ liệu chi tiết doanh thu theo ngày
                     DataTable revenueData = revenueBLL.GetRevenueByDayInMonth(selectedYear, selectedMonth);
+
+                    // -------------------------------------------------------------------
+                    // BẢNG CHI TIẾT DOANH THU THEO NGÀY
+                    // -------------------------------------------------------------------
 
                     PdfPTable table = new PdfPTable(3);
                     table.WidthPercentage = 100;
@@ -241,21 +288,47 @@ namespace SocialMediaDashboardDesign
                     table.AddCell(new PdfPCell(new Phrase("Doanh thu (VND)", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
                     table.AddCell(new PdfPCell(new Phrase("Ghi chu", boldFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
 
-                    // Nội dung bảng
-                    decimal totalRevenue = 0;
+                    // Nội dung bảng (Dùng dữ liệu từ GetRevenueByDayInMonth)
                     foreach (DataRow row in revenueData.Rows)
                     {
                         table.AddCell(new Phrase(row["OrderDay"].ToString(), normalFont));
                         decimal dailyTotal = Convert.ToDecimal(row["DailyTotal"]);
                         table.AddCell(new Phrase(dailyTotal.ToString("N0"), normalFont));
                         table.AddCell(new Phrase("", normalFont));
-                        totalRevenue += dailyTotal;
                     }
                     doc.Add(table);
 
-                    // Tổng kết
-                    doc.Add(new Paragraph($"\nTong doanh thu: {totalRevenue:N0} VND", boldFont));
-                    doc.Add(new Paragraph($"Ngay xuat bao cao: {DateTime.Now:dd/MM/yyyy}", normalFont));
+                    // -------------------------------------------------------------------
+                    // PHẦN TỔNG KẾT (THỂ HIỆN DOANH THU, COGS, LỢI NHUẬN)
+                    // -------------------------------------------------------------------
+
+                    doc.Add(new Paragraph("\n"));
+                    doc.Add(new Paragraph("TONG KET THANG", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc.Add(new Paragraph("\n"));
+
+
+                    // Bảng tổng kết 2 cột (Chỉ số và Giá trị)
+                    PdfPTable summaryTable = new PdfPTable(2);
+                    summaryTable.WidthPercentage = 50; // Chỉ chiếm 50% chiều rộng
+                    summaryTable.HorizontalAlignment = Element.ALIGN_CENTER;
+                    summaryTable.SetWidths(new float[] { 2, 1.5f });
+
+                    // Tổng Doanh thu
+                    summaryTable.AddCell(new PdfPCell(new Phrase("1. TONG DOANH THU (A):", boldFont)));
+                    summaryTable.AddCell(new PdfPCell(new Phrase(totalRevenue.ToString("N0") + " VND", boldFont)));
+
+                    // Tổng COGS
+                    summaryTable.AddCell(new PdfPCell(new Phrase("2. TONG GIA VON (COGS) (B):", boldFont)));
+                    summaryTable.AddCell(new PdfPCell(new Phrase(totalCOGS.ToString("N0") + " VND", boldFont)));
+
+                    // Tổng Lợi nhuận
+                    summaryTable.AddCell(new PdfPCell(new Phrase("3. LOI NHUAN GOP (A - B):", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+                    summaryTable.AddCell(new PdfPCell(new Phrase(totalProfit.ToString("N0") + " VND", boldFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
+
+
+                    doc.Add(summaryTable);
+
+                    doc.Add(new Paragraph($"\nNgay xuat bao cao: {DateTime.Now:dd/MM/yyyy}", normalFont));
                     doc.Close();
 
                     MessageBox.Show("Export report successfully!", "Success",
@@ -265,7 +338,7 @@ namespace SocialMediaDashboardDesign
             catch (Exception ex)
             {
                 MessageBox.Show($"Error exporting PDF: {ex.Message}", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

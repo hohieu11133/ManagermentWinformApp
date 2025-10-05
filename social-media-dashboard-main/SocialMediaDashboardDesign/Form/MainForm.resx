@@ -124,6 +124,34 @@
     <value>25</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Inventorybtn.HoverImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAeNJREFUaEPt
+        mP1xwjAMxRmhIzACIzACI7BB2aCMwAZlA9igbAAjsEG7weup51DfSxwLR1b4w7+73HEk8pO/ZMmLRaPR
+        aHQAWAJ4B3ACcMU/8lv+k3dLtpud4Phn5HAO+fY1OgJgA+CbPVQgNhtuzxUAW/aqgC2360IYeSt8ZyKs
+        +ZJlk0LaemOdagA4sgcGHFmnCmH0a1E/MgHYsaohO9YzB8CZVQf4CR2V2ZJnzx8kOLOeOXTCpuiNpHLm
+        rmxnDism6EUU7d5hO3NYMMFLd+DCogPsB+w0++DCduYAOLBqgr/MMzwf/DLBgfXMAbBiVUNWrFcFAHdW
+        NuDOOtUwykIZ36w0HFZW+I1+h/Es+I5+h9Fe8B/9DgBr9qaANbfrysTawKcGGEPShsINLTa9lGMWCutj
+        vzo4nL5f7EHshLJO6Hjk/YnOi5bNqZwp4B/FeFhKmqgk38Q2Y21PLzEVm/QUfavJkx4jG64bx5i2yQdy
+        +Oy0ZiqvXqXGDITm8lmg1Fmdqyf2g7repZqjLMUeWJ/qAyfYSuclVMojv9UhkzZ22aUXLQX3454CQnbp
+        9aDbB/dki5LF528rImPh+SmcCAcQfp8FwC1uYGZu7F+WxAk5F2VpR+iE5nSthWiXOd9oNBou/AKBK2MD
+        UnEzFgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="Inventorybtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAgZJREFUaEPt
+        WMttwzAMzQgdoSN0hI7QEUo5AXKrN0hHyAbNBs0GyQbJCN4g2aAFASkQnmlblmk6Bz3gXWzxow9FUqtV
+        QUFBQcB2u32tqurLOfdLRBci+vO88Df+x2NQbnGwU865n8jhXvLYp5lIVVUfRHRDJxN4Y1nUZwrn3Kfg
+        2CiyDtRrAr/yLYdyaL4TfH4zj00Xb3Vdv6Cd2UBEB8GJqTygnVngVx+Nq9DkZnLO1WhYi6wb7amDiI5o
+        WOCdneEV9TniWxgj8Yj21AEZVqS0kok7d0E5dQhGW5RulNTYQTl1oEGJzz6BMxpF8plHucQ4OKOcOoho
+        LxhuMVSePoh3+L+De7Snjs1m8yYYViHrRnuzgIgaNK7ABu3MBo0qFGlelXKyQicm0G71AzR3wXz1A5Ri
+        wX71A9br9bvg0CiyDtRriom9gU0P0AcuGzID+i6VHIsgpz827YN99j31OZHYJwQ+6v6OyZ/UsvJAA/9o
+        xv1RSrmVGpDp1K3SYg4FKT8ZhrEpdVK8sv4JsjUm4rQgxxo+ZVv7Oi+pU0Pg1TxpF6B0Tq7VO+Ihud+F
+        niOvxMbzOSbheFmePF+vzP2YKxMCO+/RC46CebqPL4SUo9dC/PqwRLEFxeL414pIWGzS5wZeIPh/EER0
+        jRUszCv6N4iODLkIs8sOP4mU7DoXm2znCwoKCkzwD/f0+xYzVmwTAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="sataButton21.HoverImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAeNJREFUaEPt

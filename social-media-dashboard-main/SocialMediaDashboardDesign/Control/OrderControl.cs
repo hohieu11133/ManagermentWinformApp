@@ -233,7 +233,6 @@ namespace SocialMediaDashboardDesign
             }
         }
 
-        // Hàm này phải ở trong file OrderControl.cs
         private void btnConfirmOrder_Click_1(object sender, EventArgs e)
         {
             if (OrderGridView.Rows.Count == 0)

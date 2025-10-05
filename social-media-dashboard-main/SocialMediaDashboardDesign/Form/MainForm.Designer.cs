@@ -31,19 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.sataEllipseControl1 = new SATAUiFramework.Controls.SATAEllipseControl();
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.sataTextBox1 = new SATATextBox();
             this.sataDragControl1 = new SATAUiFramework.Controls.SATADragControl();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Inventorybtn = new FrameworkTest.SATAButton();
             this.sataButton21 = new FrameworkTest.SATAButton();
             this.logoutbtn = new FrameworkTest.SATAButton();
             this.menuOrder = new FrameworkTest.SATAButton();
             this.menuRestaurant = new FrameworkTest.SATAButton();
             this.sataButton12 = new FrameworkTest.SATAButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panelHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -55,34 +54,12 @@
             // 
             // panelHeader
             // 
-            this.panelHeader.Controls.Add(this.sataTextBox1);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(257, 0);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1112, 77);
             this.panelHeader.TabIndex = 2;
             this.panelHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHeader_Paint);
-            // 
-            // sataTextBox1
-            // 
-            this.sataTextBox1.BackColor = System.Drawing.Color.White;
-            this.sataTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(79)))), ((int)(((byte)(165)))));
-            this.sataTextBox1.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(68)))), ((int)(((byte)(142)))));
-            this.sataTextBox1.BorderRadius = 5;
-            this.sataTextBox1.BorderSize = 3;
-            this.sataTextBox1.Icon = null;
-            this.sataTextBox1.IconSize = new System.Drawing.Size(20, 20);
-            this.sataTextBox1.Location = new System.Drawing.Point(563, 15);
-            this.sataTextBox1.Multiline = false;
-            this.sataTextBox1.Name = "sataTextBox1";
-            this.sataTextBox1.PasswordChar = false;
-            this.sataTextBox1.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.sataTextBox1.PlaceholderText = "Search everything..";
-            this.sataTextBox1.Size = new System.Drawing.Size(252, 41);
-            this.sataTextBox1.TabIndex = 2;
-            this.sataTextBox1.Text = "sataTextBox1";
-            this.sataTextBox1.Texts = "";
-            this.sataTextBox1.UnderlinedStyle = false;
             // 
             // sataDragControl1
             // 
@@ -123,6 +100,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.Inventorybtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.sataButton21);
             this.panel1.Controls.Add(this.logoutbtn);
@@ -136,6 +114,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(257, 860);
             this.panel1.TabIndex = 0;
+            // 
+            // Inventorybtn
+            // 
+            this.Inventorybtn.ButtonText = "Inventory";
+            this.Inventorybtn.CheckedBackground = System.Drawing.Color.White;
+            this.Inventorybtn.CheckedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(79)))), ((int)(((byte)(165)))));
+            this.Inventorybtn.CheckedImageTint = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(79)))), ((int)(((byte)(165)))));
+            this.Inventorybtn.CheckedOutline = System.Drawing.Color.White;
+            this.Inventorybtn.CustomDialogResult = System.Windows.Forms.DialogResult.None;
+            this.Inventorybtn.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Inventorybtn.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(68)))), ((int)(((byte)(142)))));
+            this.Inventorybtn.HoverForeColor = System.Drawing.Color.White;
+            this.Inventorybtn.HoverImage = ((System.Drawing.Image)(resources.GetObject("Inventorybtn.HoverImage")));
+            this.Inventorybtn.HoverImageTint = System.Drawing.Color.White;
+            this.Inventorybtn.HoverOutline = System.Drawing.Color.Empty;
+            this.Inventorybtn.Image = ((System.Drawing.Image)(resources.GetObject("Inventorybtn.Image")));
+            this.Inventorybtn.ImageAutoCenter = false;
+            this.Inventorybtn.ImageExpand = new System.Drawing.Point(3, 3);
+            this.Inventorybtn.ImageOffset = new System.Drawing.Point(20, 0);
+            this.Inventorybtn.ImageTint = System.Drawing.Color.White;
+            this.Inventorybtn.IsToggleButton = false;
+            this.Inventorybtn.IsToggled = false;
+            this.Inventorybtn.Location = new System.Drawing.Point(4, 380);
+            this.Inventorybtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Inventorybtn.Name = "Inventorybtn";
+            this.Inventorybtn.NormalBackground = System.Drawing.Color.White;
+            this.Inventorybtn.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Inventorybtn.NormalOutline = System.Drawing.Color.Empty;
+            this.Inventorybtn.OutlineThickness = 2F;
+            this.Inventorybtn.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(68)))), ((int)(((byte)(142)))));
+            this.Inventorybtn.PressedForeColor = System.Drawing.Color.White;
+            this.Inventorybtn.PressedImageTint = System.Drawing.Color.White;
+            this.Inventorybtn.PressedOutline = System.Drawing.Color.Empty;
+            this.Inventorybtn.Rounding = new System.Windows.Forms.Padding(5);
+            this.Inventorybtn.Size = new System.Drawing.Size(250, 51);
+            this.Inventorybtn.TabIndex = 3;
+            this.Inventorybtn.TextAutoCenter = false;
+            this.Inventorybtn.TextOffset = new System.Drawing.Point(15, 0);
+            this.Inventorybtn.Click += new System.EventHandler(this.Inventory_Click);
             // 
             // sataButton21
             // 
@@ -342,7 +359,7 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
@@ -352,10 +369,9 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.panelHeader.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -367,7 +383,6 @@
 
         private SATAUiFramework.Controls.SATAEllipseControl sataEllipseControl1;
         private System.Windows.Forms.Panel panelHeader;
-        private SATATextBox sataTextBox1;
         private SATAUiFramework.Controls.SATADragControl sataDragControl1;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel panel1;
@@ -379,6 +394,7 @@
         private FrameworkTest.SATAButton sataButton12;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private FrameworkTest.SATAButton Inventorybtn;
     }
 }
 

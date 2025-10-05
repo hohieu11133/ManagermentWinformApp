@@ -44,10 +44,15 @@ namespace SocialMediaDashboardDesign
         {
             LoadUserControl(new MenuControl());
         }
+        private void Inventory_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new InventoryManagementControl());
+
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+     
         }
 
         private void panelHeader_Paint(object sender, PaintEventArgs e)
@@ -108,5 +113,6 @@ namespace SocialMediaDashboardDesign
             }
         }
 
+        
     }
 }

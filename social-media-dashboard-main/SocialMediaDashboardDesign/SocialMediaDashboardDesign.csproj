@@ -55,6 +55,12 @@
     <Reference Include="ComponentFactory.Krypton.Workspace">
       <HintPath>..\..\..\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.8.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.8.0\lib\net462\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.8.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.8.0\lib\net462\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
@@ -68,16 +74,23 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=9.0.0.9, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.9.0.9\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -90,6 +103,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\AddMenuItemWithRecipeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\AddMenuItemWithRecipeForm.Designer.cs">
+      <DependentUpon>AddMenuItemWithRecipeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\AddInventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\AddInventoryForm.Designer.cs">
+      <DependentUpon>AddInventoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\InventoryBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
     <Compile Include="Control\ForgetPasssWordControl.cs">
       <SubType>UserControl</SubType>
@@ -97,12 +123,19 @@
     <Compile Include="Control\ForgetPasssWordControl.Designer.cs">
       <DependentUpon>ForgetPasssWordControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\InventoryManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\InventoryManagementControl.Designer.cs">
+      <DependentUpon>InventoryManagementControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\OrderManagermentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Control\OrderManagermentControl.Designer.cs">
       <DependentUpon>OrderManagermentControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\InventoryDAL.cs" />
     <Compile Include="Form\BillForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,9 +207,24 @@
     <Compile Include="Control\RestaurantControl.Designer.cs">
       <DependentUpon>RestaurantControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RestaurantManagementDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantManagementDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Service\EmailService.cs" />
+    <Compile Include="Service\ExcelHelpers.cs" />
+    <EmbeddedResource Include="Form\AddMenuItemWithRecipeForm.resx">
+      <DependentUpon>AddMenuItemWithRecipeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\AddInventoryForm.resx">
+      <DependentUpon>AddInventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\ForgetPasssWordControl.resx">
       <DependentUpon>ForgetPasssWordControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\InventoryManagementControl.resx">
+      <DependentUpon>InventoryManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\OrderManagermentControl.resx">
       <DependentUpon>OrderManagermentControl.cs</DependentUpon>
@@ -231,6 +279,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RestaurantManagementDBDataSet.xsc">
+      <DependentUpon>RestaurantManagementDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RestaurantManagementDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RestaurantManagementDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RestaurantManagementDBDataSet.xss">
+      <DependentUpon>RestaurantManagementDBDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
